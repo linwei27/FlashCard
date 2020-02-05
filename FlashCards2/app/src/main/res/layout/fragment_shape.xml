@@ -1,11 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent">
 
-    <TextView
-        android:text="形状学习"
+    <!--    顶部图片-->
+    <ImageView
+        android:layout_weight="4"
+        android:src="@mipmap/applelogo"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="0dp"/>
+
+    <!--    临摹画板-->
+    <com.chenke.flashcards.util.PaletteView
+        android:id="@+id/palette"
+        android:layout_weight="10"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"/>
+
+
+    <!--    前一个后一个按钮-->
+    <RelativeLayout
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <LinearLayout
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/previous"
+                android:text="上一个"
+                style="@style/Button3"
+                />
+
+
+            <Button
+                android:id="@+id/next"
+                android:text="下一个"
+                style="@style/Button4"
+                />
+
+        </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>

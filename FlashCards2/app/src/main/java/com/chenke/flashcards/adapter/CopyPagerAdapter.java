@@ -1,20 +1,34 @@
 package com.chenke.flashcards.adapter;
 
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
+import com.chenke.flashcards.R;
 import com.chenke.flashcards.fragment.NumberFragment;
 import com.chenke.flashcards.fragment.ShapeFragment;
+import com.chenke.flashcards.util.PaletteView;
 
 import java.util.ArrayList;
 
 public class CopyPagerAdapter extends FragmentPagerAdapter {
     private ArrayList<String> mTitleArray;  //标题文字队列
 
+    public Fragment currentFragment;
+
     public CopyPagerAdapter(FragmentManager fm, ArrayList<String> titleArray) {
         super(fm);
         mTitleArray = titleArray;
+    }
+
+    @Override
+    public void setPrimaryItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+        this.currentFragment = (Fragment) object;
+        super.setPrimaryItem(container, position, object);
     }
 
     //获取指定位置的碎片
@@ -27,6 +41,9 @@ public class CopyPagerAdapter extends FragmentPagerAdapter {
         }
         return new NumberFragment();
     }
+
+    //获取画板控件
+
 
     //获取碎片的个数
     @Override
