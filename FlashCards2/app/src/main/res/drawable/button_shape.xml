@@ -7,7 +7,7 @@
 <!--    填充的颜色-->
     <solid android:color="#108EE9" />
 <!--    设置按钮的角为弧形-->
-    <corners android:radius="40dp"/>
+    <corners android:radius="30dp"/>
 
 <!--    内边距-->
     <padding

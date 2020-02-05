@@ -6,22 +6,24 @@
 
 <!--    顶部图片-->
     <ImageView
-        android:layout_weight="4"
+        android:layout_weight="5"
         android:src="@mipmap/applelogo"
         android:layout_width="match_parent"
         android:layout_height="0dp"/>
 
+
 <!--    临摹画板-->
     <com.chenke.flashcards.util.PaletteView
+        android:background="@drawable/palette_border"
         android:id="@+id/palette"
-        android:layout_weight="10"
+        android:layout_weight="13"
         android:layout_width="match_parent"
         android:layout_height="0dp"/>
 
 
 <!--    前一个后一个按钮-->
     <RelativeLayout
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:layout_width="match_parent"
         android:layout_height="0dp">
 
@@ -29,7 +31,7 @@
             android:layout_alignParentBottom="true"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <Button
                 android:id="@+id/previous"

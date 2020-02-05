@@ -38,11 +38,11 @@
         android:layout_height="1dp" />
 
 <!--    内容部分-->
-    <android.support.v4.view.ViewPager
+    <com.chenke.flashcards.util.NoScrollViewPager
         android:id="@+id/vp_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </android.support.v4.view.ViewPager>
+    </com.chenke.flashcards.util.NoScrollViewPager>
 
 </LinearLayout>

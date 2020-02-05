@@ -23,7 +23,7 @@
         android:layout_height="90dp"/>
 
     <TextView
-        android:textSize="20dp"
+        android:textSize="17sp"
         android:text="手机登录"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
@@ -39,7 +39,7 @@
         android:layout_marginRight="30dp"
         android:layout_marginBottom="15dp"
         android:hint="请输入手机号码"
-        android:textSize="25dp"
+        android:textSize="17sp"
         android:gravity="center_horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
@@ -56,7 +56,7 @@
             android:layout_marginRight="10dp"
             android:background="@null"
             android:hint="验证码"
-            android:textSize="25dp"
+            android:textSize="17sp"
             android:gravity="center_horizontal"
             android:layout_weight="1"
             android:layout_width="0dp"
@@ -65,7 +65,7 @@
         <Button
             android:background="#108EE9"
             android:textColor="@color/white"
-            android:textSize="25dp"
+            android:textSize="17sp"
             android:text="获取验证码"
             android:id="@+id/btn_verify"
             android:layout_weight="1"

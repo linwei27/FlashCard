@@ -20,6 +20,7 @@ import android.support.design.widget.TabLayout.OnTabSelectedListener;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
@@ -27,6 +28,7 @@ import com.chenke.flashcards.adapter.CopyPagerAdapter;
 import com.chenke.flashcards.fragment.NumberFragment;
 import com.chenke.flashcards.fragment.ShapeFragment;
 import com.chenke.flashcards.util.MenuUtil;
+import com.chenke.flashcards.util.NoScrollViewPager;
 import com.chenke.flashcards.util.PaletteView;
 
 import java.io.File;
@@ -36,7 +38,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class TabSecondActivity extends AppCompatActivity implements OnTabSelectedListener , PaletteView.Callback, Handler.Callback {
-    private ViewPager vp_content;  //翻页视图
+    private NoScrollViewPager vp_content;  //翻页视图
     private TabLayout tab_title;  //标签视图
     private ArrayList<String> mTitleArray = new ArrayList<>();  //标题
 
@@ -152,6 +154,7 @@ public class TabSecondActivity extends AppCompatActivity implements OnTabSelecte
         tab_title.addTab(tab_title.newTab().setText(mTitleArray.get(1)));
         // 给tab_title添加标签选中监听器，该监听器默认绑定了翻页视图vp_content
         tab_title.addOnTabSelectedListener(this);
+
     }
 
     // 初始化标签翻页
@@ -159,6 +162,7 @@ public class TabSecondActivity extends AppCompatActivity implements OnTabSelecte
 
         //默认获取数字画板
         //mPaletteView = new NumberFragment().getpalette();
+
 
         vp_content = findViewById(R.id.vp_content);
         final CopyPagerAdapter adapter = new CopyPagerAdapter(
@@ -172,11 +176,11 @@ public class TabSecondActivity extends AppCompatActivity implements OnTabSelecte
 
         //获取numberFragment
         //NumberFragment numberFragment = (NumberFragment)adapter.getItem(0);
-        int index = vp_content.getCurrentItem();
-        NumberFragment numberFragment = (NumberFragment) vp_content.getAdapter().instantiateItem(vp_content,index);
+        //int index = vp_content.getCurrentItem();
+        //NumberFragment numberFragment = (NumberFragment) vp_content.getAdapter().instantiateItem(vp_content,index);
         //获取画板
-        mPaletteView = numberFragment.getpalette();
-        Log.e("画板",mPaletteView.getClass().getName());
+        //mPaletteView = numberFragment.getpalette();
+        //Log.e("画板",mPaletteView.getClass().getName());
         //System.out.print(mPaletteView.getClass().getName().toString());
 
 
@@ -209,6 +213,9 @@ public class TabSecondActivity extends AppCompatActivity implements OnTabSelecte
             }
         });
     }
+
+
+
 
 
     //在标签选中时触发
@@ -277,4 +284,7 @@ public class TabSecondActivity extends AppCompatActivity implements OnTabSelecte
         }
         return true;
     }
+
+
+
 }

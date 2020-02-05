@@ -66,7 +66,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"/>
         <TextView
-            android:textSize="25dp"
+            android:textSize="17sp"
             android:layout_marginLeft="10dp"
             android:gravity="center"
             android:layout_gravity="center"
@@ -101,7 +101,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"/>
         <TextView
-            android:textSize="25dp"
+            android:textSize="17sp"
             android:layout_marginLeft="10dp"
             android:gravity="center"
             android:layout_gravity="center"
@@ -135,7 +135,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"/>
         <TextView
-            android:textSize="25dp"
+            android:textSize="17sp"
             android:layout_marginLeft="10dp"
             android:gravity="center"
             android:layout_gravity="center"
@@ -169,7 +169,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"/>
         <TextView
-            android:textSize="25dp"
+            android:textSize="17sp"
             android:layout_marginLeft="10dp"
             android:gravity="center"
             android:layout_gravity="center"
@@ -196,7 +196,6 @@
         <Button
             android:id="@+id/btn_logout"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="0dp"
             android:text="退出登录"
             style="@style/OrdinaryButton" />
     </RelativeLayout>

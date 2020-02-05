@@ -1,6 +1,161 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent">
+
+<!--    左上角练习-->
+    <TextView
+        android:text="练习"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/zfb"
+        android:layout_marginLeft="20dp"
+        android:textSize="27sp"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"/>
+
+<!--    滚动栏-->
+    <com.chenke.flashcards.widget.BannerPager
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:id="@+id/banner_pager"
+        android:layout_weight="2"
+        android:layout_height="0dp"/>
+
+<!--    练习-->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_margin="20dp"
+        android:layout_weight="7"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+<!--        数字练习-->
+        <RelativeLayout
+            android:clickable="true"
+            android:id="@+id/prac_number"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_height="50dp">
+
+            <ImageView
+                android:layout_marginRight="20dp"
+                android:id="@+id/img_number"
+                android:src="@drawable/number"
+                android:layout_width="32dp"
+                android:layout_height="32dp"/>
+
+            <TextView
+                android:layout_toRightOf="@id/img_number"
+                android:id="@+id/text_number"
+                android:text="数字练习"
+                android:textColor="@color/red"
+                android:gravity="center"
+                android:textSize="17sp"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"/>
+
+            <ImageView
+                android:layout_alignParentRight="true"
+                android:id="@+id/img_next"
+                android:src="@drawable/next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+
+        <!--    中间分隔线-->
+        <View
+            android:background="@color/grey"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+
+<!--        形状练习-->
+
+        <RelativeLayout
+            android:clickable="true"
+            android:id="@+id/prac_shape"
+            android:gravity="center_vertical"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_height="50dp">
+
+            <ImageView
+                android:layout_marginRight="20dp"
+                android:id="@+id/img_shape"
+                android:src="@drawable/shape"
+                android:layout_width="32dp"
+                android:layout_height="32dp"/>
+
+            <TextView
+                android:layout_toRightOf="@id/img_shape"
+                android:id="@+id/text_shape"
+                android:gravity="center_vertical"
+                android:text="形状练习"
+                android:textColor="@color/orange"
+                android:textSize="17sp"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"/>
+
+            <ImageView
+                android:layout_alignParentRight="true"
+                android:id="@+id/img_snext"
+                android:src="@drawable/next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+
+        <!--    中间分隔线-->
+        <View
+            android:background="@color/grey"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+
+<!--        颜色练习-->
+
+        <RelativeLayout
+            android:clickable="true"
+            android:id="@+id/prac_color"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <ImageView
+                android:layout_marginRight="20dp"
+                android:id="@+id/img_color"
+                android:src="@drawable/color"
+                android:layout_width="32dp"
+                android:layout_height="32dp"/>
+
+            <TextView
+                android:layout_toRightOf="@id/img_color"
+                android:id="@+id/text_color"
+                android:textColor="@color/zfb"
+                android:gravity="center_vertical"
+                android:text="颜色练习"
+                android:textSize="17sp"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"/>
+
+            <ImageView
+                android:layout_alignParentRight="true"
+                android:id="@+id/img_cnext"
+                android:src="@drawable/next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
 
 </LinearLayout>

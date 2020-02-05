@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:orientation="vertical"
+    android:background="@mipmap/tabfirstbg"
     android:layout_height="match_parent">
 
 <!--数字学习-->
@@ -14,7 +15,7 @@
         android:background="@drawable/btn_circle"
         android:text="数字学习"
         android:textSize="20dp"
-        android:textColor="@color/white"
+        android:textColor="@color/xiangya"
         android:layout_width="match_parent"
         android:layout_weight="1"
         android:layout_height="0dp" />
@@ -28,7 +29,7 @@
         android:id="@+id/shape"
         android:text="形状学习"
         android:textSize="20dp"
-        android:textColor="@color/white"
+        android:textColor="@color/xiangya"
         android:layout_width="match_parent"
         android:layout_weight="1"
         android:layout_height="0dp" />
