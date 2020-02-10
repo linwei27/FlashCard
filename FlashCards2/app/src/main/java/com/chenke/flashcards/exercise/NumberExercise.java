@@ -1,5 +1,6 @@
 package com.chenke.flashcards.exercise;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
@@ -27,11 +28,15 @@ public class NumberExercise extends AppCompatActivity implements View.OnClickLis
         Toolbar tl_head = findViewById(R.id.tl_head);
         setSupportActionBar(tl_head);
 
+        //获取模式名称
+        Intent intent = getIntent();
+        String mode = intent.getStringExtra("mode");
+
         //获取题目
         ArrayList<NumberInfo> numberList = NumberInfo.getNumberList();
         //构建适配器
         PracPagerAdapter adapter = new PracPagerAdapter(
-                getSupportFragmentManager(),numberList);
+                getSupportFragmentManager(),numberList,mode);
         //获取翻页视图
         ViewPager vp_content = findViewById(R.id.vp_content);
         //注册适配器

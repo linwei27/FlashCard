@@ -12,15 +12,19 @@ import java.util.ArrayList;
 public class PracPagerAdapter extends FragmentStatePagerAdapter {
     //声明一个题目队列
     private ArrayList<NumberInfo> mNumberList = new ArrayList<NumberInfo>();
+    //模式
+    private String mode;
 
-    public PracPagerAdapter(FragmentManager fm,ArrayList<NumberInfo> numberList) {
+    public PracPagerAdapter(FragmentManager fm,ArrayList<NumberInfo> numberList,String mode) {
         super(fm);
+        this.mode = mode;
         mNumberList = numberList;
+
     }
 
     @Override
     public Fragment getItem(int i) {
-        return DynamicFragment.newInstance(i,mNumberList.get(i).question,mNumberList.get(i).answer,
+        return DynamicFragment.newInstance(mode,i,mNumberList.get(i).question,mNumberList.get(i).answer,
                 mNumberList.get(i).errorList);
     }
 

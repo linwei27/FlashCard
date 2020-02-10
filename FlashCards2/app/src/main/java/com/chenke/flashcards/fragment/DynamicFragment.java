@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.chenke.flashcards.R;
 
@@ -19,9 +20,12 @@ public class DynamicFragment extends Fragment {
     private String answer;  //答案
     private int errList[];  //错误选项
 
-    public static DynamicFragment newInstance(int position,String question, String answer, int errList[]) {
+    private String mode;  //模式名称
+
+    public static DynamicFragment newInstance(String mode,int position,String question, String answer, int errList[]) {
         DynamicFragment fragment = new DynamicFragment();
         Bundle bundle = new Bundle();
+        bundle.putString("mode",mode);
         bundle.putInt("position", position);
         bundle.putString("question",question);
         bundle.putString("answer",answer);
@@ -35,6 +39,7 @@ public class DynamicFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mContext = getActivity();  //获取活动页面的上下文
         if (getArguments() != null) {
+            mode = getArguments().getString("mode");
             position = getArguments().getInt("position");
             question = getArguments().getString("question");
             answer = getArguments().getString("answer");
@@ -43,6 +48,8 @@ public class DynamicFragment extends Fragment {
 
         //根据布局文件生成视图对象
         mView = inflater.inflate(R.layout.fragment_practice,container,false);
+        TextView text_mode = mView.findViewById(R.id.text_mode);
+        text_mode.setText(mode);
         //将控件值设为指定值
         return mView;
     }

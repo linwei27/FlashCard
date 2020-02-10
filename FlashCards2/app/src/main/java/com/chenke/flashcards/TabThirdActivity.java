@@ -126,14 +126,17 @@ public class TabThirdActivity extends AppCompatActivity implements BannerPager.B
         int id = item.getItemId();
         if (id == R.id.menu_easy) {  //简单模式
             Intent intent = new Intent(this, NumberExercise.class);
+            intent.putExtra("mode","easy");
             startActivity(intent);
             Toast.makeText(TabThirdActivity.this,"简单",Toast.LENGTH_SHORT).show();
         } else if (id == R.id.menu_medium) {  //中等模式
             Intent intent = new Intent(this, NumberExercise.class);
+            intent.putExtra("mode","medium");
             startActivity(intent);
             Toast.makeText(TabThirdActivity.this,"中等",Toast.LENGTH_SHORT).show();
         } else if (id == R.id.menu_hard) {  //困难模式
             Intent intent = new Intent(this, NumberExercise.class);
+            intent.putExtra("mode","hard");
             startActivity(intent);
             Toast.makeText(TabThirdActivity.this,"困难",Toast.LENGTH_SHORT).show();
         }
