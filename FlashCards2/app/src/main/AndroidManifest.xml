@@ -35,6 +35,7 @@
         <activity android:name=".study.NumberStudy"/>
         <activity android:name=".study.ShapeStudy"/>
         <activity android:name=".study.ColorStudy"/>
+        <activity android:name=".exercise.NumberExercise"/>
     </application>
 
 </manifest>

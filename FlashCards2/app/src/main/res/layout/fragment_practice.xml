@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+<!--    顶部说明-->
+
+    <TextView
+        android:layout_marginLeft="20dp"
+        android:textSize="17sp"
+        android:gravity="center_vertical"
+        android:text="数字练习（简单模式）"
+        android:layout_width="match_parent"
+        android:layout_height="34dp"/>
+
+    <!--    中间分隔线-->
+    <View
+        android:background="@color/grey"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+
+    <RelativeLayout
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!--    题目正文-->
+        <TextView
+            android:id="@+id/text_question"
+            android:layout_marginLeft="20dp"
+            android:textSize="17sp"
+            android:gravity="center_vertical"
+            android:text="请选出听到的数字:"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"/>
+
+<!--        喇叭图标-->
+        <ImageView
+            android:layout_marginLeft="34dp"
+            android:layout_toRightOf="@id/text_question"
+            android:id="@+id/horn"
+            android:src="@drawable/horn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+
+
+    <LinearLayout
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_marginLeft="30dp"
+            android:id="@+id/img_A"
+            android:src="@drawable/answerau"
+            android:layout_width="32dp"
+            android:layout_height="32dp"/>
+
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:id="@+id/text_A"
+            android:text="1"
+            android:gravity="center_vertical"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_marginLeft="30dp"
+            android:id="@+id/img_B"
+            android:src="@drawable/answeru"
+            android:layout_width="32dp"
+            android:layout_height="32dp"/>
+
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:id="@+id/text_B"
+            android:text="1"
+            android:gravity="center_vertical"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_marginLeft="30dp"
+            android:id="@+id/img_C"
+            android:src="@drawable/answercu"
+            android:layout_width="32dp"
+            android:layout_height="32dp"/>
+
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:id="@+id/text_C"
+            android:text="1"
+            android:gravity="center_vertical"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:layout_marginLeft="30dp"
+            android:id="@+id/img_D"
+            android:src="@drawable/answerdu"
+            android:layout_width="32dp"
+            android:layout_height="32dp"/>
+
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:id="@+id/text_D"
+            android:text="1"
+            android:gravity="center_vertical"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+
+
+</LinearLayout>
