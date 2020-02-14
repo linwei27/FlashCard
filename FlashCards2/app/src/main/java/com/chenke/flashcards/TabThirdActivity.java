@@ -24,6 +24,8 @@ public class TabThirdActivity extends AppCompatActivity implements BannerPager.B
     private RelativeLayout prac_shape;  //形状练习
     private RelativeLayout prac_color;  //颜色练习
 
+    private String type;  //区分练习
+
     private Toolbar toolbar;
 
     @Override
@@ -99,18 +101,21 @@ public class TabThirdActivity extends AppCompatActivity implements BannerPager.B
     //颜色练习
     private void onClick_color(View v) {
         //Toast.makeText(TabThirdActivity.this,"颜色练习",Toast.LENGTH_SHORT).show();
+        type = "颜色练习";
         openContextMenu(v);
     }
 
     //形状练习
     private void onClick_shape(View v) {
         //Toast.makeText(TabThirdActivity.this,"形状练习",Toast.LENGTH_SHORT).show();
+        type = "形状练习";
         openContextMenu(v);
     }
 
     //数字练习
     public void onClick_number(View v) {
         //Toast.makeText(TabThirdActivity.this,"数字练习",Toast.LENGTH_SHORT).show();
+        type = "数字练习";
         //打开选项菜单
         openContextMenu(v);
     }
@@ -126,19 +131,19 @@ public class TabThirdActivity extends AppCompatActivity implements BannerPager.B
         int id = item.getItemId();
         if (id == R.id.menu_easy) {  //简单模式
             Intent intent = new Intent(this, NumberExercise.class);
-            intent.putExtra("mode","easy");
+            intent.putExtra("mode",type + "(简单模式)");
             startActivity(intent);
-            Toast.makeText(TabThirdActivity.this,"简单",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(TabThirdActivity.this,"简单",Toast.LENGTH_SHORT).show();
         } else if (id == R.id.menu_medium) {  //中等模式
             Intent intent = new Intent(this, NumberExercise.class);
-            intent.putExtra("mode","medium");
+            intent.putExtra("mode",type + "(中等模式)");
             startActivity(intent);
-            Toast.makeText(TabThirdActivity.this,"中等",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(TabThirdActivity.this,"中等",Toast.LENGTH_SHORT).show();
         } else if (id == R.id.menu_hard) {  //困难模式
             Intent intent = new Intent(this, NumberExercise.class);
-            intent.putExtra("mode","hard");
+            intent.putExtra("mode",type + "(困难模式)");
             startActivity(intent);
-            Toast.makeText(TabThirdActivity.this,"困难",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(TabThirdActivity.this,"困难",Toast.LENGTH_SHORT).show();
         }
         return true;
     }

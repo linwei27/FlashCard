@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class NumberInfo {
     public String question;  //题目
     public String answer;  //答案内容
-    public int errorList [];  //错误选项
+    public String errorList [];  //错误选项
 
     public NumberInfo() {
 
@@ -27,15 +27,15 @@ public class NumberInfo {
         this.answer = answer;
     }
 
-    public int[] getErrorList() {
+    public String[] getErrorList() {
         return errorList;
     }
 
-    public void setErrorList(int[] errorList) {
+    public void setErrorList(String[] errorList) {
         this.errorList = errorList;
     }
 
-    public NumberInfo(String question, String answer, int[] errorList) {
+    public NumberInfo(String question, String answer, String[] errorList) {
         this.question = question;
         this.answer = answer;
         this.errorList = errorList;
@@ -46,13 +46,13 @@ public class NumberInfo {
         NumberInfo n1 = new NumberInfo();
         n1.setQuestion("请选出听到的数字");
         n1.setAnswer("1");
-        int a[] = {1,2,3,4};
+        String a[] = {"4","2","3"};
         n1.setErrorList(a);
         NumberInfo n2 = new NumberInfo();
         n2.setQuestion("请选出听到的数字");
         n2.setAnswer("2");
-        int b[] = {1,2,3,4};
-        n2.setErrorList(a);
+        String b[] = {"5","3","4"};
+        n2.setErrorList(b);
 
         ArrayList<NumberInfo> numberInfoArrayList = new ArrayList<>();
         numberInfoArrayList.add(n1);
