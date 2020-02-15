@@ -1,20 +1,28 @@
 package com.chenke.flashcards.exercise;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.Dimension;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.chenke.flashcards.R;
 import com.chenke.flashcards.adapter.PracPagerAdapter;
 import com.chenke.flashcards.bean.NumberInfo;
+import com.chenke.flashcards.util.Utils;
+import com.codingending.popuplayout.PopupLayout;
 
 import java.util.ArrayList;
 import java.util.Timer;
@@ -26,6 +34,8 @@ public class NumberExercise extends AppCompatActivity implements View.OnClickLis
     private ImageView img_time;  //时钟
 
     private TextView text_time;  //计时
+
+
 
     private int relen = 0;
 
@@ -75,13 +85,14 @@ public class NumberExercise extends AppCompatActivity implements View.OnClickLis
         img_card = findViewById(R.id.img_card);  //答题卡
         img_time = findViewById(R.id.img_time);  //时钟
 
-
         //注册监听器
         img_back.setOnClickListener(this);
         img_card.setOnClickListener(this);
         img_time.setOnClickListener(this);
 
+
     }
+
 
     //倒计时
     TimerTask task = new TimerTask() {
@@ -121,13 +132,66 @@ public class NumberExercise extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.img_card:
                 //点击答题卡的操作
-                //onClick_shape(v);
+                onClick_card(v);
                 break;
             case R.id.img_time:
                 //点击时钟的操作
                 //onClick_color(v);
                 break;
+
         }
 
     }
+
+    //获取答题卡布局
+    public View getCardView() {
+        LayoutInflater layoutInflater = getLayoutInflater();
+        View view = layoutInflater.inflate(R.layout.activity_card, null);
+        return view;
+    }
+
+    //点击答题卡，从底部弹出答题卡视图
+    private void onClick_card(View v) {
+        //获取答题卡布局
+        View parent = getCardView();
+        //答题卡关闭图标
+        ImageView img_close = parent.findViewById(R.id.close);
+        //提交按钮
+        Button btn_submit = parent.findViewById(R.id.btn_submit);
+        //初始化布局
+        final PopupLayout popupLayout = PopupLayout.init(NumberExercise.this, parent);
+        View.OnClickListener clickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (v.getId()) {
+                    case R.id.close:  //关闭
+                        popupLayout.dismiss();
+                        break;
+                    case R.id.btn_submit:  //提交答案
+                        Toast.makeText(NumberExercise.this,"提交",Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+        };
+        //注册监听
+        img_close.setOnClickListener(clickListener);
+        btn_submit.setOnClickListener(clickListener);
+
+        //不设置圆角
+        popupLayout.setUseRadius(false);
+        //获取屏幕高度(像素)
+        int height = Utils.getScreenHeight(NumberExercise.this);
+        //获取屏幕密度
+        float density = Utils.getScreenDensity(NumberExercise.this);
+        //计算屏幕高度（dp）
+        int screenHeight = (int) (height / density);
+        //设置弹出窗高度
+        popupLayout.setHeight(screenHeight,true);
+        //从底部弹出
+        popupLayout.show(PopupLayout.POSITION_BOTTOM);
+    }
+
+
+
+
 }

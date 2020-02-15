@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <ImageView
+            android:id="@+id/close"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/close1"
+            android:layout_width="20dp"
+            android:layout_height="20dp"/>
+
+        <TextView
+            android:layout_marginRight="20dp"
+            android:textSize="17sp"
+            android:text="答题卡"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+    <!--    中间分隔线-->
+    <View
+        android:background="@color/grey"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+
+    <TextView
+        android:id="@+id/text_mode"
+        android:layout_marginLeft="20dp"
+        android:textSize="17sp"
+        android:gravity="center_vertical"
+        android:text="数字练习（简单模式）"
+        android:layout_width="match_parent"
+        android:layout_height="34dp"/>
+
+    <!--    中间分隔线-->
+    <View
+        android:background="@color/grey"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+
+
+<!--    题目序号-->
+    <GridLayout
+        android:layout_marginTop="30dp"
+        android:columnCount="5"
+        android:rowCount="2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:src="@drawable/one"
+            />
+
+        <ImageView
+
+            android:src="@drawable/two"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            />
+
+        <ImageView
+            android:src="@drawable/three"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            />
+
+        <ImageView
+            android:src="@drawable/four"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+
+            />
+
+        <ImageView
+            android:src="@drawable/five"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            />
+
+        <ImageView
+            android:layout_marginTop="30dp"
+            android:src="@drawable/n6"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            />
+
+        <ImageView
+            android:layout_marginTop="30dp"
+            android:src="@drawable/n7"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            />
+
+        <ImageView
+            android:layout_marginTop="30dp"
+            android:src="@drawable/n8"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            />
+
+        <ImageView
+            android:layout_marginTop="30dp"
+            android:src="@drawable/n9"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            />
+
+        <ImageView
+            android:layout_marginTop="30dp"
+            android:src="@drawable/n10"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            />
+
+    </GridLayout>
+
+<!--    底部确认提交-->
+
+    <RelativeLayout
+        android:layout_marginBottom="22dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btn_submit"
+            android:layout_alignParentBottom="true"
+            android:text="提交并查看结果"
+            android:textSize="17sp"
+            android:textColor="@color/white"
+            android:background="@color/zfb"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>
+    </RelativeLayout>
+
+</LinearLayout>
