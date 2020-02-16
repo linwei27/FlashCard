@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -40,11 +41,14 @@ public class DynamicFragment extends Fragment implements View.OnClickListener, T
 
     private TextToSpeech textToSpeech;  //tts对象
 
+    private TextView order;  //题号
+
     //选项
-    private ImageView imgA;
-    private ImageView imgB;
-    private ImageView imgC;
-    private ImageView imgD;
+    private Button btnA;
+    private Button btnB;
+    private Button btnC;
+    private Button btnD;
+
 
     //用户选项
     private TextView t_A;
@@ -120,17 +124,22 @@ public class DynamicFragment extends Fragment implements View.OnClickListener, T
         horn.setOnClickListener(this);
 
         //获取4个选项图标
-        imgA = mView.findViewById(R.id.img_A);
-        imgB = mView.findViewById(R.id.img_B);
-        imgC = mView.findViewById(R.id.img_C);
-        imgD = mView.findViewById(R.id.img_D);
+        btnA = mView.findViewById(R.id.btn_A);
+        btnB = mView.findViewById(R.id.btn_B);
+        btnC = mView.findViewById(R.id.btn_C);
+        btnD = mView.findViewById(R.id.btn_D);
 
         //注册监听
-        imgA.setOnClickListener(this);
-        imgB.setOnClickListener(this);
-        imgC.setOnClickListener(this);
-        imgD.setOnClickListener(this);
+        btnA.setOnClickListener(this);
+        btnB.setOnClickListener(this);
+        btnC.setOnClickListener(this);
+        btnD.setOnClickListener(this);
 
+
+        //获取题号
+        order = mView.findViewById(R.id.text_order);
+        //设置题号
+        order.setText(position + 1 + "");
 
 
         //将控件值设为指定值
@@ -140,38 +149,56 @@ public class DynamicFragment extends Fragment implements View.OnClickListener, T
     //点击更改选项颜色
     public void changeOption(View view) {
         //取消选中所有
-        imgA.setSelected(false);
-        imgB.setSelected(false);
-        imgC.setSelected(false);
-        imgD.setSelected(false);
+        btnA.setSelected(false);
+        btnB.setSelected(false);
+        btnC.setSelected(false);
+        btnD.setSelected(false);
         //选择指定标签
         view.setSelected(true);
 
         //设置当前选中为蓝色，其它为黑色
-        if (view == imgA) {
+        if (view == btnA) {
             Toast.makeText(getActivity(),"用户的答案" + t_A.getText(),Toast.LENGTH_SHORT).show();
-            imgA.setImageDrawable(getResources().getDrawable(R.drawable.answera));
-            imgB.setImageDrawable(getResources().getDrawable(R.drawable.answerbu));
-            imgC.setImageDrawable(getResources().getDrawable(R.drawable.answercu));
-            imgD.setImageDrawable(getResources().getDrawable(R.drawable.answerdu));
-        } else if (view == imgB) {
+            btnA.setBackground(getResources().getDrawable(R.drawable.btn_circle4));
+            btnA.setTextColor(getResources().getColor(R.color.white));
+            btnB.setBackground(getResources().getDrawable(R.drawable.btn_circle3));
+            btnB.setTextColor(getResources().getColor(R.color.blue));
+            btnC.setBackground(getResources().getDrawable(R.drawable.btn_circle3));
+            btnC.setTextColor(getResources().getColor(R.color.blue));
+            btnD.setBackground(getResources().getDrawable(R.drawable.btn_circle3));
+            btnD.setTextColor(getResources().getColor(R.color.blue));
+
+        } else if (view == btnB) {
             Toast.makeText(getActivity(),"用户的答案" + t_B.getText(),Toast.LENGTH_SHORT).show();
-            imgA.setImageDrawable(getResources().getDrawable(R.drawable.answerau));
-            imgB.setImageDrawable(getResources().getDrawable(R.drawable.answerb));
-            imgC.setImageDrawable(getResources().getDrawable(R.drawable.answercu));
-            imgD.setImageDrawable(getResources().getDrawable(R.drawable.answerdu));
-        } else if (view == imgC) {
+            btnB.setBackground(getResources().getDrawable(R.drawable.btn_circle4));
+            btnB.setTextColor(getResources().getColor(R.color.white));
+            btnC.setBackground(getResources().getDrawable(R.drawable.btn_circle3));
+            btnC.setTextColor(getResources().getColor(R.color.blue));
+            btnD.setBackground(getResources().getDrawable(R.drawable.btn_circle3));
+            btnD.setTextColor(getResources().getColor(R.color.blue));
+            btnA.setBackground(getResources().getDrawable(R.drawable.btn_circle3));
+            btnA.setTextColor(getResources().getColor(R.color.blue));
+
+        } else if (view == btnC) {
             Toast.makeText(getActivity(),"用户的答案" + t_C.getText(),Toast.LENGTH_SHORT).show();
-            imgA.setImageDrawable(getResources().getDrawable(R.drawable.answerau));
-            imgB.setImageDrawable(getResources().getDrawable(R.drawable.answerbu));
-            imgC.setImageDrawable(getResources().getDrawable(R.drawable.answerc));
-            imgD.setImageDrawable(getResources().getDrawable(R.drawable.answerdu));
-        } else if (view == imgD) {
+            btnC.setBackground(getResources().getDrawable(R.drawable.btn_circle4));
+            btnC.setTextColor(getResources().getColor(R.color.white));
+            btnD.setBackground(getResources().getDrawable(R.drawable.btn_circle3));
+            btnD.setTextColor(getResources().getColor(R.color.blue));
+            btnA.setBackground(getResources().getDrawable(R.drawable.btn_circle3));
+            btnA.setTextColor(getResources().getColor(R.color.blue));
+            btnB.setBackground(getResources().getDrawable(R.drawable.btn_circle3));
+            btnB.setTextColor(getResources().getColor(R.color.blue));
+        } else if (view == btnD) {
             Toast.makeText(getActivity(),"用户的答案" + t_D.getText(),Toast.LENGTH_SHORT).show();
-            imgA.setImageDrawable(getResources().getDrawable(R.drawable.answerau));
-            imgB.setImageDrawable(getResources().getDrawable(R.drawable.answerbu));
-            imgC.setImageDrawable(getResources().getDrawable(R.drawable.answercu));
-            imgD.setImageDrawable(getResources().getDrawable(R.drawable.answerd));
+            btnD.setBackground(getResources().getDrawable(R.drawable.btn_circle4));
+            btnD.setTextColor(getResources().getColor(R.color.white));
+            btnA.setBackground(getResources().getDrawable(R.drawable.btn_circle3));
+            btnA.setTextColor(getResources().getColor(R.color.blue));
+            btnB.setBackground(getResources().getDrawable(R.drawable.btn_circle3));
+            btnB.setTextColor(getResources().getColor(R.color.blue));
+            btnC.setBackground(getResources().getDrawable(R.drawable.btn_circle3));
+            btnC.setTextColor(getResources().getColor(R.color.blue));
         }
 
     }
@@ -194,16 +221,16 @@ public class DynamicFragment extends Fragment implements View.OnClickListener, T
             case R.id.horn:  //点击喇叭图标，实现文字转语音
                 play(ttString);
                 break;
-            case R.id.img_A:
+            case R.id.btn_A:
                 changeOption(v);
                 break;
-            case R.id.img_B:
+            case R.id.btn_B:
                 changeOption(v);
                 break;
-            case R.id.img_C:
+            case R.id.btn_C:
                 changeOption(v);
                 break;
-            case R.id.img_D:
+            case R.id.btn_D:
                 changeOption(v);
                 break;
         }

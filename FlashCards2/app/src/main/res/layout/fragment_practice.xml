@@ -27,9 +27,30 @@
         android:layout_height="wrap_content">
 
         <!--    题目正文-->
+
+<!--        题号-->
         <TextView
-            android:id="@+id/text_question"
+            android:id="@+id/text_order"
+            android:text="1"
             android:layout_marginLeft="20dp"
+            android:gravity="center_vertical"
+            android:textSize="17sp"
+            android:textColor="@color/grey"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"/>
+<!--逗号-->
+        <TextView
+            android:text=","
+            android:layout_marginLeft="30dp"
+            android:gravity="center_vertical"
+            android:textSize="17sp"
+            android:textColor="@color/grey"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"/>
+
+        <TextView
+            android:layout_marginLeft="40dp"
+            android:id="@+id/text_question"
             android:textSize="17sp"
             android:gravity="center_vertical"
             android:text="请选出听到的数字:"
@@ -57,12 +78,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
+        <Button
+            android:id="@+id/btn_A"
             android:layout_marginLeft="30dp"
-            android:id="@+id/img_A"
-            android:src="@drawable/answerau"
+            android:stateListAnimator="@null"
+            android:text="A"
+            android:textSize="17sp"
+            android:textColor="@color/blue"
             android:layout_width="32dp"
-            android:layout_height="32dp"/>
+            android:layout_height="32dp"
+            android:background="@drawable/btn_circle3"
+            />
+
 
         <TextView
             android:layout_marginLeft="20dp"
@@ -83,12 +110,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
+        <Button
+            android:id="@+id/btn_B"
             android:layout_marginLeft="30dp"
-            android:id="@+id/img_B"
-            android:src="@drawable/answerbu"
+            android:stateListAnimator="@null"
+            android:text="B"
+            android:textSize="17sp"
+            android:textColor="@color/blue"
             android:layout_width="32dp"
-            android:layout_height="32dp"/>
+            android:layout_height="32dp"
+            android:background="@drawable/btn_circle3"
+            />
 
         <TextView
             android:layout_marginLeft="20dp"
@@ -108,12 +140,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
+        <Button
+            android:id="@+id/btn_C"
             android:layout_marginLeft="30dp"
-            android:id="@+id/img_C"
-            android:src="@drawable/answercu"
+            android:stateListAnimator="@null"
+            android:text="C"
+            android:textSize="17sp"
+            android:textColor="@color/blue"
             android:layout_width="32dp"
-            android:layout_height="32dp"/>
+            android:layout_height="32dp"
+            android:background="@drawable/btn_circle3"
+            />
 
         <TextView
             android:layout_marginLeft="20dp"
@@ -134,12 +171,17 @@
         android:layout_height="wrap_content">
 
 
-        <ImageView
+        <Button
+            android:id="@+id/btn_D"
             android:layout_marginLeft="30dp"
-            android:id="@+id/img_D"
-            android:src="@drawable/answerdu"
+            android:stateListAnimator="@null"
+            android:text="D"
+            android:textSize="17sp"
+            android:textColor="@color/blue"
             android:layout_width="32dp"
-            android:layout_height="32dp"/>
+            android:layout_height="32dp"
+            android:background="@drawable/btn_circle3"
+            />
 
         <TextView
             android:layout_marginLeft="20dp"
