@@ -41,7 +41,9 @@
 <!--逗号-->
         <TextView
             android:text=","
-            android:layout_marginLeft="30dp"
+            android:id="@+id/symbol"
+            android:layout_marginLeft="3dp"
+            android:layout_toRightOf="@+id/text_order"
             android:gravity="center_vertical"
             android:textSize="17sp"
             android:textColor="@color/grey"
@@ -49,8 +51,9 @@
             android:layout_height="35dp"/>
 
         <TextView
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="5dp"
             android:id="@+id/text_question"
+            android:layout_toRightOf="@+id/symbol"
             android:textSize="17sp"
             android:gravity="center_vertical"
             android:text="请选出听到的数字:"

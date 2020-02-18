@@ -1,8 +1,10 @@
 package com.chenke.flashcards.adapter;
 
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.view.ViewGroup;
 
 import com.chenke.flashcards.bean.NumberInfo;
 import com.chenke.flashcards.fragment.DynamicFragment;
@@ -21,6 +23,7 @@ public class PracPagerAdapter extends FragmentStatePagerAdapter {
         mNumberList = numberList;
 
     }
+
 
     @Override
     public Fragment getItem(int i) {

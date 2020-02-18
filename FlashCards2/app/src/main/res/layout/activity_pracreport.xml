@@ -4,22 +4,23 @@
     android:orientation="vertical"
     android:layout_height="match_parent">
 
+<!--    顶部练习报告-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp">
 
         <ImageView
-            android:id="@+id/close"
+            android:id="@+id/img_back"
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
-            android:src="@drawable/close1"
+            android:src="@drawable/back"
             android:layout_width="20dp"
             android:layout_height="20dp"/>
 
         <TextView
             android:layout_marginRight="20dp"
             android:textSize="17sp"
-            android:text="答题卡"
+            android:text="练习报告"
             android:layout_centerInParent="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -31,23 +32,52 @@
         android:layout_width="match_parent"
         android:layout_height="1dp" />
 
-    <TextView
-        android:id="@+id/text_mode"
-        android:layout_marginLeft="20dp"
-        android:textSize="17sp"
-        android:gravity="center_vertical"
-        android:text="数字练习（简单模式）"
-        android:layout_width="match_parent"
-        android:layout_height="34dp"/>
+<!--    练习类型-->
 
-    <!--    中间分隔线-->
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="20dp"
+        android:text="练习类型：数字练习(简单模式)"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <View
         android:background="@color/grey"
         android:layout_width="match_parent"
         android:layout_height="1dp" />
 
+    <RelativeLayout
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-<!--    题目序号-->
+        <Button
+            android:text="答对题目数"
+            android:layout_width="180dp"
+            android:layout_height="47dp"
+            android:layout_centerHorizontal="true"
+            style="@style/ReportButton"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:stateListAnimator="@null"
+            android:text="10"
+            android:textSize="34sp"
+            android:textColor="@color/black"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/btn_circle2"
+            />
+    </RelativeLayout>
+
     <GridLayout
         android:layout_marginTop="30dp"
         android:columnCount="5"
@@ -61,7 +91,6 @@
             android:layout_rowWeight="1"
             >
             <Button
-                android:id="@+id/sub1"
                 android:stateListAnimator="@null"
                 android:text="1"
                 android:textSize="17sp"
@@ -78,7 +107,6 @@
             android:layout_rowWeight="1"
             >
             <Button
-                android:id="@+id/sub2"
                 android:stateListAnimator="@null"
                 android:text="2"
                 android:textSize="17sp"
@@ -95,7 +123,6 @@
             android:layout_rowWeight="1"
             >
             <Button
-                android:id="@+id/sub3"
                 android:stateListAnimator="@null"
                 android:text="3"
                 android:textSize="17sp"
@@ -112,7 +139,6 @@
             android:layout_rowWeight="1"
             >
             <Button
-                android:id="@+id/sub4"
                 android:stateListAnimator="@null"
                 android:text="4"
                 android:textSize="17sp"
@@ -129,7 +155,6 @@
             android:layout_rowWeight="1"
             >
             <Button
-                android:id="@+id/sub5"
                 android:stateListAnimator="@null"
                 android:text="5"
                 android:textSize="17sp"
@@ -147,7 +172,6 @@
             android:layout_rowWeight="1"
             >
             <Button
-                android:id="@+id/sub6"
                 android:stateListAnimator="@null"
                 android:text="6"
                 android:textSize="17sp"
@@ -165,7 +189,6 @@
             android:layout_rowWeight="1"
             >
             <Button
-                android:id="@+id/sub7"
                 android:stateListAnimator="@null"
                 android:text="7"
                 android:textSize="17sp"
@@ -183,7 +206,6 @@
             android:layout_rowWeight="1"
             >
             <Button
-                android:id="@+id/sub8"
                 android:stateListAnimator="@null"
                 android:text="8"
                 android:textSize="17sp"
@@ -201,7 +223,6 @@
             android:layout_rowWeight="1"
             >
             <Button
-                android:id="@+id/sub9"
                 android:stateListAnimator="@null"
                 android:text="9"
                 android:textSize="17sp"
@@ -219,7 +240,6 @@
             android:layout_rowWeight="1"
             >
             <Button
-                android:id="@+id/sub10"
                 android:stateListAnimator="@null"
                 android:text="10"
                 android:textSize="17sp"
@@ -232,22 +252,5 @@
 
     </GridLayout>
 
-<!--    底部确认提交-->
-
-    <RelativeLayout
-        android:layout_marginBottom="22dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:id="@+id/btn_submit"
-            android:layout_alignParentBottom="true"
-            android:text="提交并查看结果"
-            android:textSize="17sp"
-            android:textColor="@color/white"
-            android:background="@color/zfb"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"/>
-    </RelativeLayout>
 
 </LinearLayout>

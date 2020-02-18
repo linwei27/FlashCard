@@ -45,4 +45,6 @@ public class VeriftyCode extends AppCompatActivity {
         }.start();
         Log.e("msg","发送成功");
     }
+
+
 }

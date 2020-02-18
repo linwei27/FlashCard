@@ -57,6 +57,14 @@ public class NumberInfo {
         ArrayList<NumberInfo> numberInfoArrayList = new ArrayList<>();
         numberInfoArrayList.add(n1);
         numberInfoArrayList.add(n2);
+        numberInfoArrayList.add(n1);
+        numberInfoArrayList.add(n2);
+        numberInfoArrayList.add(n1);
+        numberInfoArrayList.add(n2);
+        numberInfoArrayList.add(n1);
+        numberInfoArrayList.add(n2);
+        numberInfoArrayList.add(n1);
+        numberInfoArrayList.add(n2);
         return numberInfoArrayList;
     }
 

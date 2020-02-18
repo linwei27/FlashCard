@@ -22,8 +22,10 @@ import com.chenke.flashcards.util.RandomSort;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class DynamicFragment extends Fragment implements View.OnClickListener, TextToSpeech.OnInitListener {
     protected View mView;  //视图对象
@@ -43,6 +45,9 @@ public class DynamicFragment extends Fragment implements View.OnClickListener, T
 
     private TextView order;  //题号
 
+    public static int[] selectArray = new int[10];  //选择数组
+
+
     //选项
     private Button btnA;
     private Button btnB;
@@ -55,6 +60,7 @@ public class DynamicFragment extends Fragment implements View.OnClickListener, T
     private TextView t_B;
     private TextView t_C;
     private TextView t_D;
+
 
     public static DynamicFragment newInstance(String mode,int position,String question, String answer, String errList[]) {
         DynamicFragment fragment = new DynamicFragment();
@@ -141,7 +147,6 @@ public class DynamicFragment extends Fragment implements View.OnClickListener, T
         //设置题号
         order.setText(position + 1 + "");
 
-
         //将控件值设为指定值
         return mView;
     }
@@ -215,24 +220,15 @@ public class DynamicFragment extends Fragment implements View.OnClickListener, T
         }
     }
 
+
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.horn:  //点击喇叭图标，实现文字转语音
-                play(ttString);
-                break;
-            case R.id.btn_A:
-                changeOption(v);
-                break;
-            case R.id.btn_B:
-                changeOption(v);
-                break;
-            case R.id.btn_C:
-                changeOption(v);
-                break;
-            case R.id.btn_D:
-                changeOption(v);
-                break;
+        int id = v.getId();
+        if (id == R.id.horn) {
+            play(ttString);
+        } else if (id == R.id.btn_A || id == R.id.btn_B || id == R.id.btn_C || id == R.id.btn_D) {
+            selectArray[position] = 1;  //代表已选择
+            changeOption(v);
         }
     }
 
