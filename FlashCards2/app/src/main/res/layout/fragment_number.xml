@@ -1,55 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-<!--    顶部图片-->
-    <ImageView
-        android:layout_weight="5"
-        android:src="@mipmap/applelogo"
+    <!--    顶部图片-->
+<!--    <ImageView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_weight="4"-->
+<!--        android:src="@mipmap/applelogo" />-->
+
+    <Button
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:id="@+id/btn_number"
+        android:stateListAnimator="@null"
+        android:text="1"
+        android:textSize="105sp"
+        android:textColor="@color/colorAccent"
         android:layout_width="match_parent"
-        android:layout_height="0dp"/>
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:background="@drawable/btn_circle2"
+        />
 
-
-<!--    临摹画板-->
+    <!--    临摹画板-->
     <com.chenke.flashcards.util.PaletteView
-        android:background="@drawable/palette_border"
         android:id="@+id/palette"
-        android:layout_weight="13"
         android:layout_width="match_parent"
-        android:layout_height="0dp"/>
+        android:layout_height="0dp"
+        android:layout_weight="6"
+        android:background="@drawable/palette_border" />
 
 
-<!--    前一个后一个按钮-->
+    <!--    前一个后一个按钮-->
     <RelativeLayout
-        android:layout_weight="2"
         android:layout_width="match_parent"
+        android:layout_weight="1"
         android:layout_height="0dp">
 
-        <LinearLayout
+        <Button
+            android:layout_toLeftOf="@+id/cankao"
+            android:layout_centerInParent="true"
+            android:id="@+id/btn_previous"
+            android:text="上一个"
+            android:background="@color/zfb"
+            style="@style/Button6"
+            />
+
+
+        <TextView
+            android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:id="@+id/cankao"
+            android:layout_width="15dp"
+            android:layout_height="1dp"/>
 
-            <Button
-                android:id="@+id/previous"
-                android:text="上一个"
-                style="@style/Button3"
-                />
-
-
-            <Button
-                android:id="@+id/next"
-                android:text="下一个"
-                style="@style/Button4"
-                />
-
-        </LinearLayout>
+        <Button
+            android:layout_centerInParent="true"
+            android:layout_toRightOf="@id/cankao"
+            android:id="@+id/btn_next"
+            android:background="@color/zfb"
+            android:text="下一个"
+            style="@style/Button6"
+            />
     </RelativeLayout>
-
-
 
 
 </LinearLayout>

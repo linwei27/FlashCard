@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.support.annotation.Nullable;
@@ -25,7 +27,11 @@ public class ColorStudy extends AppCompatActivity implements View.OnClickListene
     private Toolbar tl_head;  //顶部工具栏
 
     private ImageButton horn;  //喇叭按钮
-    private ImageView image_color;  //图片内容
+
+    private Button btn_color;  //显示颜色的按钮
+
+    private LayerDrawable drawable;  //按钮背景色
+
     private Button previous;  //上一个按钮
     private Button next;  //下一个按钮
 
@@ -39,6 +45,19 @@ public class ColorStudy extends AppCompatActivity implements View.OnClickListene
     private String colors[] = {
             "红色","橙色","黄色","绿色","蓝色","青色","紫色"
     };
+
+    //颜色值数组
+    private int colorValue[] = {
+            R.color.red,
+            R.color.orange,
+            R.color.yellow,
+            R.color.green,
+            R.color.blue,
+            R.color.qing,
+            R.color.zise
+    };
+
+    //颜色数组
 
 
     @Override
@@ -68,13 +87,13 @@ public class ColorStudy extends AppCompatActivity implements View.OnClickListene
             public void onClick(DialogInterface dialog, int which) {
                 //取出i值，设置好图片
                 if (rate != -1) {
-                    //有数据，判断i的值
-                    String imageName = "color0" + rate;
-                    int resID = getResources().getIdentifier(imageName,"drawable","com.chenke.flashcards");
-                    Drawable image = getResources().getDrawable(resID);
-                    //设置相应的图片
-                    image_color.setImageDrawable(image);
-                    //把当前的值传给i
+
+                    GradientDrawable drawable = (GradientDrawable) btn_color.getBackground();
+                    drawable.setColor(getResources().getColor(colorValue[i]));
+
+
+                    //drawable = (LayerDrawable) btn_color.getBackground();
+                    //drawable.setColor(getResources().getColor(colorValue[i]));
                     i = rate;
                 }
 
@@ -104,9 +123,11 @@ public class ColorStudy extends AppCompatActivity implements View.OnClickListene
         });
 
         horn = findViewById(R.id.horn);
-        image_color = findViewById(R.id.image_color);
+        btn_color = findViewById(R.id.btn_color);
         previous = findViewById(R.id.previous);
         next = findViewById(R.id.next);
+
+        //drawable = (GradientDrawable) btn_color.getBackground();
 
 
         //注册监听
@@ -162,13 +183,8 @@ public class ColorStudy extends AppCompatActivity implements View.OnClickListene
             return;
         }
         i++;
-        String imageName = "color0" + i;
-
-
-        int resID = getResources().getIdentifier(imageName,"drawable","com.chenke.flashcards");
-        Drawable image = getResources().getDrawable(resID);
-        image_color.setImageDrawable(image);
-
+        GradientDrawable drawable = (GradientDrawable) btn_color.getBackground();
+        drawable.setColor(getResources().getColor(colorValue[i]));
         Log.e("打印：","下一个");
     }
 
@@ -182,12 +198,8 @@ public class ColorStudy extends AppCompatActivity implements View.OnClickListene
         }
 
         i--;
-        String imageName = "color0" + i;
-
-
-        int resID = getResources().getIdentifier(imageName,"drawable","com.chenke.flashcards");
-        Drawable image = getResources().getDrawable(resID);
-        image_color.setImageDrawable(image);
+        GradientDrawable drawable = (GradientDrawable) btn_color.getBackground();
+        drawable.setColor(getResources().getColor(colorValue[i]));
         Log.e("打印：","上一个");
     }
 

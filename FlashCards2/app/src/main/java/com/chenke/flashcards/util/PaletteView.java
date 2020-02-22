@@ -1,5 +1,6 @@
 package com.chenke.flashcards.util;
 
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -17,7 +18,9 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * Created by wensefu on 17-3-21.
+ */
 public class PaletteView extends View {
 
     private Paint mPaint;

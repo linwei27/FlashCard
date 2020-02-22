@@ -25,12 +25,6 @@ public class CopyPagerAdapter extends FragmentPagerAdapter {
         mTitleArray = titleArray;
     }
 
-    @Override
-    public void setPrimaryItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-        this.currentFragment = (Fragment) object;
-        super.setPrimaryItem(container, position, object);
-    }
-
     //获取指定位置的碎片
     @Override
     public Fragment getItem(int i) {

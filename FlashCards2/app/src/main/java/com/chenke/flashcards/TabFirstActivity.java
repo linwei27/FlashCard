@@ -5,44 +5,56 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
+
+import com.chenke.flashcards.group.CircleMenuLayout;
 import com.chenke.flashcards.study.ColorStudy;
 import com.chenke.flashcards.study.NumberStudy;
 import com.chenke.flashcards.study.ShapeStudy;
 
-public class TabFirstActivity extends AppCompatActivity implements View.OnClickListener{
+
+
+public class TabFirstActivity extends AppCompatActivity{
     private Button btn_number;  //数字按钮
     private Button btn_shape;   //形状按钮
     private Button btn_color;   //颜色按钮
 
+    private CircleMenuLayout mCircleMenuLayout;  //圆形转盘
+    private String[] mItemTexts = new String[] { "数字学习 ", "形状学习", "颜色学习",
+            "数字学习", "形状学习", "颜色学习" };
+    private int[] mItemImgs = new int[] { R.drawable.number1,
+            R.drawable.shape1, R.drawable.color1,
+            R.drawable.number2, R.drawable.shape2,
+            R.drawable.color2 };
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_tabfirst);
-        btn_number = findViewById(R.id.number);
-        btn_shape = findViewById(R.id.shape);
-        btn_color = findViewById(R.id.color);
+        mCircleMenuLayout = findViewById(R.id.menulayout);
+        mCircleMenuLayout.setMenuItemIconsAndTexts(mItemImgs, mItemTexts);
+        mCircleMenuLayout.setOnMenuItemClickListener(new CircleMenuLayout.OnMenuItemClickListener() {
+            @Override
+            public void itemClick(View view, int pos) {
+                if (pos == 0 || pos == 3) {
+                    onClickBtn_number(view);
+                } else if (pos == 1 || pos == 4) {
+                    onClickBtn_shape(view);
+                } else if (pos == 2 || pos == 5) {
+                    onClickBtn_color(view);
+                }
+                Toast.makeText(TabFirstActivity.this,"点击了元素",Toast.LENGTH_SHORT).show();
+            }
 
-        //注册监听器
-        btn_number.setOnClickListener(this);
-        btn_shape.setOnClickListener(this);
-        btn_color.setOnClickListener(this);
-    }
+            @Override
+            public void itemCenterClick(View view) {
+                Toast.makeText(TabFirstActivity.this,"点击了中间",Toast.LENGTH_SHORT).show();
+            }
+        });
 
-    //重写
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.number:
-                onClickBtn_number(v);
-                break;
-            case R.id.shape:
-                onClickBtn_shape(v);
-                break;
-            case R.id.color:
-                onClickBtn_color(v);
-                break;
-        }
+
     }
 
     //数字学习
@@ -65,8 +77,6 @@ public class TabFirstActivity extends AppCompatActivity implements View.OnClickL
         Intent intent = new Intent(this, ColorStudy.class);
         startActivity(intent);
     }
-
-
 
 
 }

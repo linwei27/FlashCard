@@ -1,51 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:background="@mipmap/tabfirstbg"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/bg">
 
-<!--数字学习-->
-    <Button
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="20dp"
-        android:id="@+id/number"
-        android:background="@drawable/btn_circle"
-        android:text="数字学习"
-        android:textSize="20dp"
-        android:textColor="@color/xiangya"
+
+    <TextView
         android:layout_width="match_parent"
-        android:layout_weight="1"
-        android:layout_height="0dp" />
+        android:layout_height="39dp"
+        android:background="@color/blue"
+        android:gravity="center"
+        android:textSize="17sp"
+        android:text="首页"
+        android:textColor="@color/white" />
 
-    <!-- 形状学习 -->
-    <Button
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/btn_circle"
-        android:id="@+id/shape"
-        android:text="形状学习"
-        android:textSize="20dp"
-        android:textColor="@color/xiangya"
+    <LinearLayout
+        android:layout_centerVertical="true"
         android:layout_width="match_parent"
-        android:layout_weight="1"
-        android:layout_height="0dp" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:orientation="horizontal">
 
-    <!-- 颜色学习 -->
-    <Button
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/btn_circle"
-        android:id="@+id/color"
-        android:text="颜色学习"
-        android:textSize="20dp"
-        android:textColor="@color/white"
-        android:layout_width="match_parent"
-        android:layout_weight="1"
-        android:layout_height="0dp" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:background="@drawable/turnplate_bg_left"
+            android:gravity="center"
+            android:orientation="vertical">
 
-</LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="我爱学习"
+                android:gravity="center"
+                android:textColor="@color/colorAccent"
+                android:textSize="17sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:paddingRight="20dp"
+                android:paddingLeft="30dp"
+                android:paddingTop="10dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="纸上得来终觉浅，绝知此事要躬行。"
+                android:textColor="@color/colorAccent"
+                android:textSize="13.5dip" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <com.chenke.flashcards.group.CircleMenuLayout
+                android:id="@+id/menulayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/turnplate_bg_right">
+
+                <RelativeLayout
+                    android:id="@+id/circle_menu_item_center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <com.chenke.flashcards.util.CircleImageView
+                        android:layout_width="104.0dip"
+                        android:layout_height="104.0dip"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/study"
+                        android:layout_centerInParent="true" />
+
+<!--                    <ImageView-->
+<!--                        android:layout_width="104.0dip"-->
+<!--                        android:layout_height="104.0dip"-->
+<!--                        android:layout_centerInParent="true"-->
+<!--                        android:background="@drawable/study" />-->
+
+                    <ImageView
+                        android:layout_width="116.0dip"
+                        android:layout_height="116.0dip"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/turnplate_mask_unlogin_normal" />
+                </RelativeLayout>
+
+            </com.chenke.flashcards.group.CircleMenuLayout>
+
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

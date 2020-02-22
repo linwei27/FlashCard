@@ -22,17 +22,19 @@ import com.chenke.flashcards.R;
 
 import java.util.Locale;
 
-public class NumberStudy extends AppCompatActivity implements View.OnClickListener,TextToSpeech.OnInitListener {
+public class NumberStudy extends AppCompatActivity implements View.OnLongClickListener, View.OnClickListener,TextToSpeech.OnInitListener {
     private Toolbar tl_head;  //顶部工具栏
 
     private ImageButton horn;  //喇叭按钮
-    private ImageView image_number;  //图片内容
+
+    private Button btn_number;  //按钮显示数字
+
     private Button previous;  //上一个按钮
     private Button next;  //下一个按钮
 
     private TextToSpeech textToSpeech;  //tts对象
 
-    private int i = 2;
+    private int i = 1;
 
     private int rate = 0;  //记录学习进度
 
@@ -65,23 +67,10 @@ public class NumberStudy extends AppCompatActivity implements View.OnClickListen
             public void onClick(DialogInterface dialog, int which) {
                 //取出i值，设置好图片
                 if (rate != -1) {
-                    //有数据，判断i的值
-                    String imageName = "";
-                    if (rate >= 100) {
-                        imageName = "image" + rate;
-                    } else if (rate >= 10){
-                        imageName = "image0" + rate;
-                    } else {
-                        imageName = "image00" + rate;
-                    }
-                    int resID = getResources().getIdentifier(imageName,"drawable","com.chenke.flashcards");
-                    Drawable image = getResources().getDrawable(resID);
-                    //设置相应的图片
-                    image_number.setImageDrawable(image);
+                    btn_number.setText(rate + "");
                     //把当前的值传给i
                     i = rate;
                 }
-
             }
         });
         builder.show();
@@ -103,13 +92,12 @@ public class NumberStudy extends AppCompatActivity implements View.OnClickListen
             public void onClick(View v) {
                 //记录学习进度
                 saveRecord(i);
-
                 finish();
             }
         });
 
         horn = findViewById(R.id.horn);
-        image_number = findViewById(R.id.image_number);
+        btn_number = findViewById(R.id.btn_number);
         previous = findViewById(R.id.previous);
         next = findViewById(R.id.next);
 
@@ -117,10 +105,14 @@ public class NumberStudy extends AppCompatActivity implements View.OnClickListen
         //注册监听
         horn.setOnClickListener(this);
         previous.setOnClickListener(this);
+        previous.setOnLongClickListener(this);
         next.setOnClickListener(this);
+        next.setOnLongClickListener(this);
 
 
     }
+
+
 
     //重写，文字转语音，需传入文字
     public void onClick(View v) {
@@ -140,9 +132,8 @@ public class NumberStudy extends AppCompatActivity implements View.OnClickListen
     //播放语音
     private void play() {
         //获取当前文件名序号
-        int j = i;
-        j--;
-        String str = "" + j;
+
+        String str = "" + i;
 
 
         Log.e("朗读：","调用播放");
@@ -161,51 +152,29 @@ public class NumberStudy extends AppCompatActivity implements View.OnClickListen
     //切换下一张图片
     private void next() {
         //先判断是否是最后一张，如果是给出提示
-        if (i == 101) {
+        if (i == 100) {
             //提示信息
             Toast.makeText(NumberStudy.this, "这已经是最后一张图片了！",Toast.LENGTH_SHORT).show();
             return;
         }
         i++;
-        String imageName = "";
-        if (i >= 100) {
-            imageName = "image" + i;
-        } else if (i >= 10){
-            imageName = "image0" + i;
-        } else {
-            imageName = "image00" + i;
-        }
 
-        int resID = getResources().getIdentifier(imageName,"drawable","com.chenke.flashcards");
-        Drawable image = getResources().getDrawable(resID);
-        image_number.setImageDrawable(image);
-
+        btn_number.setText(i + "");
         Log.e("打印：","下一个");
     }
 
     //切换上一张图片
     private void previous() {
         //先判断是否是第一张，是的话给出提示
-        if (i == 2){
+        if (i == 1){
             //提示信息
             Toast.makeText(NumberStudy.this, "这已经是第一张图片了！",Toast.LENGTH_SHORT).show();
             return;
         }
 
         i--;
-        String imageName = "";
-        if (i >= 100) {
-            imageName = "image" + i;
-        } else if (i >= 10){
-            imageName = "image0" + i;
-        } else {
-            imageName = "image00" + i;
-        }
+        btn_number.setText(i + "");
 
-
-        int resID = getResources().getIdentifier(imageName,"drawable","com.chenke.flashcards");
-        Drawable image = getResources().getDrawable(resID);
-        image_number.setImageDrawable(image);
         Log.e("打印：","上一个");
     }
 
@@ -245,6 +214,23 @@ public class NumberStudy extends AppCompatActivity implements View.OnClickListen
         editor.commit();//必须提交，否则保存不成功
 
     }
+
+    //长按事件
+    @Override
+    public boolean onLongClick(View v) {
+        switch (v.getId()) {
+            case R.id.previous:
+                i = 1;
+                btn_number.setText(i+"");
+                break;
+            case R.id.next:
+                i = 100;
+                btn_number.setText(i+"");
+                break;
+        }
+        return false;
+    }
+
 
 
 

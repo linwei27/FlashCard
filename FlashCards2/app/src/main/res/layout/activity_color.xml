@@ -1,61 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <!--    顶部导航栏-->
     <android.support.v7.widget.Toolbar
         android:id="@+id/tl_head"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 
     <!--    中间喇叭图标和图片内容-->
+
     <RelativeLayout
         android:layout_marginTop="70dp"
-        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ImageButton
-            android:layout_toRightOf="@id/image_color"
+            android:layout_toRightOf="@id/btn_color"
             android:id="@+id/horn"
             android:src="@drawable/horn"
             android:background="#00FF0000"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
-        <ImageView
-            android:id="@+id/image_color"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/color01"
-            android:layout_width="260dp"
-            android:layout_height="260dp"/>
+        <Button
+            android:id="@+id/btn_color"
+            android:stateListAnimator="@null"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/btn_circle5"
+            />
     </RelativeLayout>
 
 
     <!--    左右按钮-->
-    <LinearLayout
-        android:layout_marginTop="60dp"
-        android:orientation="horizontal"
+    <RelativeLayout
+        android:layout_marginBottom="50dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <Button
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@+id/cankao"
             android:id="@+id/previous"
             android:text="上一个"
             style="@style/Button1"
             />
 
+        <TextView
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/cankao"
+            android:layout_width="15dp"
+            android:layout_height="1dp"/>
 
         <Button
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@id/cankao"
             android:id="@+id/next"
             android:text="下一个"
             style="@style/Button2"
             />
-
-    </LinearLayout>
-
+    </RelativeLayout>
 
 
 

@@ -42,6 +42,8 @@ public class MainActivity extends ActivityGroup implements View.OnClickListener 
             changeContainerView(ll_fourth, "center");
         } else if (msg != null && msg.equals("logout")) {
             changeContainerView(ll_fourth, "");
+        } else if (msg != null && msg.equals("finish")) {
+            changeContainerView(ll_third,"");
         } else {
             //默认显示首页
             changeContainerView(ll_first, "");

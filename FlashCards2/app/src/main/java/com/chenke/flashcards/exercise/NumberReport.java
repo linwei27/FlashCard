@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.chenke.flashcards.MainActivity;
 import com.chenke.flashcards.R;
 import com.chenke.flashcards.TabThirdActivity;
 
@@ -27,7 +28,8 @@ public class NumberReport extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.img_back:
-                Intent intent = new Intent(NumberReport.this, TabThirdActivity.class);
+                Intent intent = new Intent(NumberReport.this, MainActivity.class);
+                intent.putExtra("msg","finish");
                 startActivity(intent);
                 break;
         }
