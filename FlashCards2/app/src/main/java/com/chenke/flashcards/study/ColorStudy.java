@@ -3,6 +3,7 @@ package com.chenke.flashcards.study;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
@@ -28,16 +29,14 @@ public class ColorStudy extends AppCompatActivity implements View.OnClickListene
 
     private ImageButton horn;  //喇叭按钮
 
-    private Button btn_color;  //显示颜色的按钮
-
-    private LayerDrawable drawable;  //按钮背景色
+    private ImageView img_color;  //显示颜色的按钮
 
     private Button previous;  //上一个按钮
     private Button next;  //下一个按钮
 
     private TextToSpeech textToSpeech;  //tts对象
 
-    private int i = 1;
+    private int i = 0;
 
     private int rate = 0;  //记录学习进度
 
@@ -48,13 +47,13 @@ public class ColorStudy extends AppCompatActivity implements View.OnClickListene
 
     //颜色值数组
     private int colorValue[] = {
-            R.color.red,
-            R.color.orange,
-            R.color.yellow,
-            R.color.green,
-            R.color.blue,
-            R.color.qing,
-            R.color.zise
+            Color.RED,
+            Color.rgb(255,97,0),
+            Color.YELLOW,
+            Color.GREEN,
+            Color.BLUE,
+            Color.CYAN,
+            Color.rgb(128,0,128)
     };
 
     //颜色数组
@@ -87,13 +86,7 @@ public class ColorStudy extends AppCompatActivity implements View.OnClickListene
             public void onClick(DialogInterface dialog, int which) {
                 //取出i值，设置好图片
                 if (rate != -1) {
-
-                    GradientDrawable drawable = (GradientDrawable) btn_color.getBackground();
-                    drawable.setColor(getResources().getColor(colorValue[i]));
-
-
-                    //drawable = (LayerDrawable) btn_color.getBackground();
-                    //drawable.setColor(getResources().getColor(colorValue[i]));
+                    img_color.setBackgroundColor(colorValue[rate]);
                     i = rate;
                 }
 
@@ -123,11 +116,9 @@ public class ColorStudy extends AppCompatActivity implements View.OnClickListene
         });
 
         horn = findViewById(R.id.horn);
-        btn_color = findViewById(R.id.btn_color);
-        previous = findViewById(R.id.previous);
-        next = findViewById(R.id.next);
-
-        //drawable = (GradientDrawable) btn_color.getBackground();
+        img_color = findViewById(R.id.img_color);
+        previous = findViewById(R.id.btn_previous);
+        next = findViewById(R.id.btn_next);
 
 
         //注册监听
@@ -144,10 +135,10 @@ public class ColorStudy extends AppCompatActivity implements View.OnClickListene
             case R.id.horn:  //点击喇叭图标，实现文字转语音
                 play();
                 break;
-            case R.id.previous:
+            case R.id.btn_previous:
                 previous();  //切换图片，上一个
                 break;
-            case R.id.next:
+            case R.id.btn_next:
                 next();  //切换图片，下一个
                 break;
         }
@@ -156,9 +147,9 @@ public class ColorStudy extends AppCompatActivity implements View.OnClickListene
     //播放语音
     private void play() {
         //获取当前文件名序号
-        int j = i;
-        j--;
-        String str = colors[j];
+        //int j = i;
+        //j--;
+        String str = colors[i];
 
 
         Log.e("朗读：","调用播放");
@@ -177,29 +168,27 @@ public class ColorStudy extends AppCompatActivity implements View.OnClickListene
     //切换下一张图片
     private void next() {
         //先判断是否是最后一张，如果是给出提示
-        if (i == 7) {
+        if (i == 6) {
             //提示信息
             Toast.makeText(ColorStudy.this, "这已经是最后一张图片了！",Toast.LENGTH_SHORT).show();
             return;
         }
         i++;
-        GradientDrawable drawable = (GradientDrawable) btn_color.getBackground();
-        drawable.setColor(getResources().getColor(colorValue[i]));
+        img_color.setBackgroundColor(colorValue[i]);
         Log.e("打印：","下一个");
     }
 
     //切换上一张图片
     private void previous() {
         //先判断是否是第一张，是的话给出提示
-        if (i == 1){
+        if (i == 0){
             //提示信息
             Toast.makeText(ColorStudy.this, "这已经是第一张图片了！",Toast.LENGTH_SHORT).show();
             return;
         }
 
         i--;
-        GradientDrawable drawable = (GradientDrawable) btn_color.getBackground();
-        drawable.setColor(getResources().getColor(colorValue[i]));
+        img_color.setBackgroundColor(colorValue[i]);
         Log.e("打印：","上一个");
     }
 

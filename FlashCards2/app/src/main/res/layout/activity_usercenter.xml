@@ -54,7 +54,7 @@
 
     <LinearLayout
         android:background="@drawable/border"
-
+        android:id="@+id/study"
         android:paddingLeft="30dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -89,7 +89,7 @@
 <!--    练习记录-->
     <LinearLayout
         android:background="@drawable/border"
-
+        android:id="@+id/prac"
         android:paddingLeft="30dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -123,7 +123,7 @@
 <!--    帮助-->
     <LinearLayout
         android:background="@drawable/border"
-
+        android:id="@+id/help"
         android:paddingLeft="30dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -157,7 +157,7 @@
 <!--    关于-->
     <LinearLayout
         android:background="@drawable/border"
-
+        android:id="@+id/about"
         android:paddingLeft="30dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"

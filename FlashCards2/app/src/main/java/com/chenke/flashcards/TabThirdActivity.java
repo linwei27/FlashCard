@@ -15,6 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.chenke.flashcards.constant.ImageList;
+import com.chenke.flashcards.exercise.ColorExercise;
 import com.chenke.flashcards.exercise.NumberExercise;
 import com.chenke.flashcards.util.Utils;
 import com.chenke.flashcards.widget.BannerPager;
@@ -130,19 +131,57 @@ public class TabThirdActivity extends AppCompatActivity implements BannerPager.B
     public boolean onContextItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.menu_easy) {  //简单模式
-            Intent intent = new Intent(this, NumberExercise.class);
-            intent.putExtra("mode",type + "(简单模式)");
-            startActivity(intent);
+
+            if (type.contains("数字")) {
+                Intent intent = new Intent(this, NumberExercise.class);
+                intent.putExtra("mode",type + "(简单模式)");
+                startActivity(intent);
+            } else if (type.contains("颜色")) {
+                Intent intent = new Intent(this, ColorExercise.class);
+                intent.putExtra("mode",type + "(简单模式)");
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(this, NumberExercise.class);
+                intent.putExtra("mode",type + "(简单模式)");
+                startActivity(intent);
+            }
+
             //Toast.makeText(TabThirdActivity.this,"简单",Toast.LENGTH_SHORT).show();
         } else if (id == R.id.menu_medium) {  //中等模式
-            Intent intent = new Intent(this, NumberExercise.class);
-            intent.putExtra("mode",type + "(中等模式)");
-            startActivity(intent);
+
+            if (type.contains("数字")) {
+                Intent intent = new Intent(this, NumberExercise.class);
+                intent.putExtra("mode",type + "(中等模式)");
+                startActivity(intent);
+            } else if (type.contains("颜色")) {
+                Intent intent = new Intent(this, ColorExercise.class);
+                intent.putExtra("mode",type + "(中等模式)");
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(this, NumberExercise.class);
+                intent.putExtra("mode",type + "(中等模式)");
+                startActivity(intent);
+            }
+
+
             //Toast.makeText(TabThirdActivity.this,"中等",Toast.LENGTH_SHORT).show();
         } else if (id == R.id.menu_hard) {  //困难模式
-            Intent intent = new Intent(this, NumberExercise.class);
-            intent.putExtra("mode",type + "(困难模式)");
-            startActivity(intent);
+
+            if (type.contains("数字")) {
+                Intent intent = new Intent(this, NumberExercise.class);
+                intent.putExtra("mode",type + "(困难模式)");
+                startActivity(intent);
+            } else if (type.contains("颜色")) {
+                Intent intent = new Intent(this, ColorExercise.class);
+                intent.putExtra("mode",type + "(困难模式)");
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(this, NumberExercise.class);
+                intent.putExtra("mode",type + "(困难模式)");
+                startActivity(intent);
+            }
+
+
             //Toast.makeText(TabThirdActivity.this,"困难",Toast.LENGTH_SHORT).show();
         }
         return true;

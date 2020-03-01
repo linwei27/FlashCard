@@ -39,6 +39,8 @@
         <activity android:name=".study.ColorStudy"/>
         <activity android:name=".exercise.NumberExercise"/>
         <activity android:name=".exercise.NumberReport"/>
+        <activity android:name=".userinfo.StudyProgress"/>
+        <activity android:name=".exercise.ColorExercise"/>
     </application>
 
 </manifest>

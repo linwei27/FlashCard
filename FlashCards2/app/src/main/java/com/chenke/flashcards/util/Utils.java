@@ -1,6 +1,7 @@
 package com.chenke.flashcards.util;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
@@ -48,4 +49,12 @@ public class Utils {
         wm.getDefaultDisplay().getMetrics(dm);
         return dm.density; // 返回屏幕的像素密度数值
     }
+
+    //获取字体的高度
+    public static float getFontHeight(Paint paint) {
+        Paint.FontMetrics fm = paint.getFontMetrics();
+        //文字基准线的下部距离-文字基准线的上部距离 = 文字高度
+        return fm.descent - fm.ascent;
+    }
+
 }

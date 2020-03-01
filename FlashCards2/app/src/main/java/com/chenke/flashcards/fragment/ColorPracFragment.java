@@ -1,19 +1,18 @@
 package com.chenke.flashcards.fragment;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,12 +21,10 @@ import com.chenke.flashcards.util.RandomSort;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
-public class DynamicFragment extends Fragment implements View.OnClickListener, TextToSpeech.OnInitListener {
+public class ColorPracFragment extends Fragment implements View.OnClickListener, TextToSpeech.OnInitListener  {
     protected View mView;  //视图对象
     protected Context mContext;  //上下文对象
     private int position;  //位置
@@ -56,14 +53,36 @@ public class DynamicFragment extends Fragment implements View.OnClickListener, T
 
 
     //用户选项
-    private TextView t_A;
-    private TextView t_B;
-    private TextView t_C;
-    private TextView t_D;
+    private ImageView t_A;
+    private ImageView t_B;
+    private ImageView t_C;
+    private ImageView t_D;
+
+    //颜色数组
+    private String colorName[] = {
+            "红色",
+            "橙色",
+            "黄色",
+            "绿色",
+            "蓝色",
+            "青色",
+            "紫色",
+    };
+
+    //颜色值数组
+    private int colorValue[] = {
+            Color.RED,
+            Color.rgb(255,97,0),
+            Color.YELLOW,
+            Color.GREEN,
+            Color.BLUE,
+            Color.CYAN,
+            Color.rgb(128,0,128)
+    };
 
 
-    public static DynamicFragment newInstance(String mode,int position,String question, String answer, String errList[]) {
-        DynamicFragment fragment = new DynamicFragment();
+    public static ColorPracFragment newInstance(String mode,int position,String question, String answer, String errList[]) {
+        ColorPracFragment fragment = new ColorPracFragment();
         Bundle bundle = new Bundle();
         bundle.putString("mode",mode);
         bundle.putInt("position", position);
@@ -88,7 +107,7 @@ public class DynamicFragment extends Fragment implements View.OnClickListener, T
         }
 
         //根据布局文件生成视图对象
-        mView = inflater.inflate(R.layout.fragment_practice,container,false);
+        mView = inflater.inflate(R.layout.fragment_colorprac,container,false);
 
         //new一个tts对象
         textToSpeech = new TextToSpeech(mContext,this);
@@ -102,6 +121,10 @@ public class DynamicFragment extends Fragment implements View.OnClickListener, T
         } else { //否则播放问题
             ttString = question;
         }
+
+        //上面的先保留
+        ttString = colorName[Integer.parseInt(answer)];
+
 
         //获取选项
         t_A = mView.findViewById(R.id.text_A);
@@ -118,10 +141,15 @@ public class DynamicFragment extends Fragment implements View.OnClickListener, T
         //随机打乱数组顺序，构成选项
         String finalarr[] = RandomSort.changePosition(arr);
 
-        t_A.setText(finalarr[0]);
-        t_B.setText(finalarr[1]);
-        t_C.setText(finalarr[2]);
-        t_D.setText(finalarr[3]);
+        t_A.setBackgroundColor(Color.RED);
+        t_B.setBackgroundColor(colorValue[Integer.parseInt(finalarr[1])]);
+        t_C.setBackgroundColor(colorValue[Integer.parseInt(finalarr[2])]);
+        t_D.setBackgroundColor(colorValue[Integer.parseInt(finalarr[3])]);
+
+//        t_A.setText(finalarr[0]);
+//        t_B.setText(finalarr[1]);
+//        t_C.setText(finalarr[2]);
+//        t_D.setText(finalarr[3]);
 
 
         //获取喇叭
@@ -163,7 +191,7 @@ public class DynamicFragment extends Fragment implements View.OnClickListener, T
 
         //设置当前选中为蓝色，其它为黑色
         if (view == btnA) {
-            Toast.makeText(getActivity(),"用户的答案" + t_A.getText(),Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getActivity(),"用户的答案" + t_A.getText(),Toast.LENGTH_SHORT).show();
             btnA.setBackground(getResources().getDrawable(R.drawable.btn_circle4));
             btnA.setTextColor(getResources().getColor(R.color.white));
             btnB.setBackground(getResources().getDrawable(R.drawable.btn_circle3));
@@ -174,7 +202,7 @@ public class DynamicFragment extends Fragment implements View.OnClickListener, T
             btnD.setTextColor(getResources().getColor(R.color.blue));
 
         } else if (view == btnB) {
-            Toast.makeText(getActivity(),"用户的答案" + t_B.getText(),Toast.LENGTH_SHORT).show();
+           // Toast.makeText(getActivity(),"用户的答案" + t_B.getText(),Toast.LENGTH_SHORT).show();
             btnB.setBackground(getResources().getDrawable(R.drawable.btn_circle4));
             btnB.setTextColor(getResources().getColor(R.color.white));
             btnC.setBackground(getResources().getDrawable(R.drawable.btn_circle3));
@@ -185,7 +213,7 @@ public class DynamicFragment extends Fragment implements View.OnClickListener, T
             btnA.setTextColor(getResources().getColor(R.color.blue));
 
         } else if (view == btnC) {
-            Toast.makeText(getActivity(),"用户的答案" + t_C.getText(),Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getActivity(),"用户的答案" + t_C.getText(),Toast.LENGTH_SHORT).show();
             btnC.setBackground(getResources().getDrawable(R.drawable.btn_circle4));
             btnC.setTextColor(getResources().getColor(R.color.white));
             btnD.setBackground(getResources().getDrawable(R.drawable.btn_circle3));
@@ -195,7 +223,7 @@ public class DynamicFragment extends Fragment implements View.OnClickListener, T
             btnB.setBackground(getResources().getDrawable(R.drawable.btn_circle3));
             btnB.setTextColor(getResources().getColor(R.color.blue));
         } else if (view == btnD) {
-            Toast.makeText(getActivity(),"用户的答案" + t_D.getText(),Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getActivity(),"用户的答案" + t_D.getText(),Toast.LENGTH_SHORT).show();
             btnD.setBackground(getResources().getDrawable(R.drawable.btn_circle4));
             btnD.setTextColor(getResources().getColor(R.color.white));
             btnA.setBackground(getResources().getDrawable(R.drawable.btn_circle3));
@@ -244,6 +272,4 @@ public class DynamicFragment extends Fragment implements View.OnClickListener, T
         }
 
     }
-
-
 }

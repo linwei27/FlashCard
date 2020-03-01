@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="ProgressCircleChart">
+        <attr name="colorRing" format="integer" />
+        <attr name="ringWidth" format="integer" />
+        <attr name="colorRingDef" format="integer" />
+        <attr name="android_background" format="integer" />
+        <attr name="startAnimator" format="boolean" />
+        <attr name="animDuration" format="integer" />
+        <attr name="labelSpace" format="float" />
+    </declare-styleable>
+
+</resources>

@@ -12,43 +12,41 @@
 
     <!--    中间喇叭图标和图片内容-->
 
-    <RelativeLayout
-        android:layout_marginTop="70dp"
+    <ImageButton
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:id="@+id/horn"
+        android:src="@drawable/horn"
+        android:background="#00FF0000"
+        android:layout_weight="0.5"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"/>
+
+    <ImageView
+        android:layout_margin="10dp"
+        android:id="@+id/img_color"
+        android:background="@color/red"
+        android:layout_weight="4"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageButton
-            android:layout_toRightOf="@id/btn_color"
-            android:id="@+id/horn"
-            android:src="@drawable/horn"
-            android:background="#00FF0000"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <Button
-            android:id="@+id/btn_color"
-            android:stateListAnimator="@null"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/btn_circle5"
-            />
-    </RelativeLayout>
+        android:layout_height="0dp"/>
 
 
     <!--    左右按钮-->
     <RelativeLayout
-        android:layout_marginBottom="50dp"
+        android:layout_marginTop="30dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_weight="0.5"
+        android:layout_height="0dp">
 
         <Button
-            android:layout_alignParentBottom="true"
             android:layout_toLeftOf="@+id/cankao"
-            android:id="@+id/previous"
+            android:layout_centerInParent="true"
+            android:id="@+id/btn_previous"
             android:text="上一个"
-            style="@style/Button1"
+            android:background="@color/zfb"
+            style="@style/Button6"
             />
+
 
         <TextView
             android:layout_centerHorizontal="true"
@@ -58,11 +56,12 @@
             android:layout_height="1dp"/>
 
         <Button
-            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
             android:layout_toRightOf="@id/cankao"
-            android:id="@+id/next"
+            android:id="@+id/btn_next"
+            android:background="@color/zfb"
             android:text="下一个"
-            style="@style/Button2"
+            style="@style/Button6"
             />
     </RelativeLayout>
 

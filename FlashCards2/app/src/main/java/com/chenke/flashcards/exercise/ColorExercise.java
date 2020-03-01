@@ -9,9 +9,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-
 import android.view.LayoutInflater;
-
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -19,8 +17,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.chenke.flashcards.R;
+import com.chenke.flashcards.adapter.ColorPracAdapter;
 import com.chenke.flashcards.adapter.PracPagerAdapter;
 import com.chenke.flashcards.bean.NumberInfo;
+import com.chenke.flashcards.fragment.ColorPracFragment;
 import com.chenke.flashcards.fragment.DynamicFragment;
 import com.chenke.flashcards.util.Utils;
 import com.codingending.popuplayout.PopupLayout;
@@ -29,7 +29,9 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class NumberExercise extends AppCompatActivity implements View.OnClickListener {
+public class ColorExercise extends AppCompatActivity implements View.OnClickListener {
+
+
     private ImageView img_back;  //左上角返回图标
     private ImageView img_card;  //答题卡
     private ImageView img_time;  //时钟
@@ -83,7 +85,7 @@ public class NumberExercise extends AppCompatActivity implements View.OnClickLis
         //获取题目
         ArrayList<NumberInfo> numberList = NumberInfo.getNumberList();
         //构建适配器
-        PracPagerAdapter adapter = new PracPagerAdapter(
+        ColorPracAdapter adapter = new ColorPracAdapter(
                 getSupportFragmentManager(), numberList, mode);
         //获取翻页视图
         vp_content = findViewById(R.id.vp_content);
@@ -121,7 +123,7 @@ public class NumberExercise extends AppCompatActivity implements View.OnClickLis
                         timer.cancel();
                         //时间结束，弹出对话框，要求交卷
                         //弹出对话框
-                        AlertDialog.Builder builder = new AlertDialog.Builder(NumberExercise.this);
+                        AlertDialog.Builder builder = new AlertDialog.Builder(ColorExercise.this);
                         builder.setTitle("提示");
                         builder.setMessage("时间结束，是否提交？");
 
@@ -131,7 +133,7 @@ public class NumberExercise extends AppCompatActivity implements View.OnClickLis
                             public void onClick(DialogInterface dialog, int which) {
                                 //禁用答题卡
                                 img_card.setEnabled(false);
-                                Toast.makeText(NumberExercise.this,"时间已用完，不能提交答案。",Toast.LENGTH_LONG).show();
+                                Toast.makeText(ColorExercise.this,"时间已用完，不能提交答案。",Toast.LENGTH_LONG).show();
                             }
                         });
 
@@ -140,7 +142,7 @@ public class NumberExercise extends AppCompatActivity implements View.OnClickLis
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 //跳转到练习报告页面
-                                Intent intent = new Intent(NumberExercise.this, NumberReport.class);
+                                Intent intent = new Intent(ColorExercise.this, NumberReport.class);
                                 startActivity(intent);
                             }
                         });
@@ -191,17 +193,18 @@ public class NumberExercise extends AppCompatActivity implements View.OnClickLis
     //检查数组是否包含0（是否已答完）
     public boolean isall() {
         for (int i = 0; i < DynamicFragment.selectArray.length; i++) {
-               if (DynamicFragment.selectArray[i] == 0) {
-                   return false;
-               }
+            if (DynamicFragment.selectArray[i] == 0) {
+                return false;
+            }
         }
         return true;
     }
 
+
     @Override
     protected void onStop() {
         super.onStop();
-        initArray(DynamicFragment.selectArray);
+        initArray(ColorPracFragment.selectArray);
     }
 
     //获取答题卡布局
@@ -236,7 +239,7 @@ public class NumberExercise extends AppCompatActivity implements View.OnClickLis
 
         //判断题目是否被选中
         //1,获取list
-        int arr[] = DynamicFragment.selectArray;
+        int arr[] = ColorPracFragment.selectArray;
         //2,遍历数组
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] == 1) {
@@ -257,7 +260,7 @@ public class NumberExercise extends AppCompatActivity implements View.OnClickLis
         //提交按钮
         Button btn_submit = parent.findViewById(R.id.btn_submit);
         //初始化布局
-        final PopupLayout popupLayout = PopupLayout.init(NumberExercise.this, parent);
+        final PopupLayout popupLayout = PopupLayout.init(ColorExercise.this, parent);
         View.OnClickListener clickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -266,15 +269,15 @@ public class NumberExercise extends AppCompatActivity implements View.OnClickLis
                         popupLayout.dismiss();
                         break;
                     case R.id.btn_submit:  //提交答案
-                        Toast.makeText(NumberExercise.this, "提交", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ColorExercise.this, "提交", Toast.LENGTH_SHORT).show();
                         //提交答案先检查是否全部答完
                         if (isall()) {  //如果做完
                             //跳转到练习报告页面
-                            Intent intent = new Intent(NumberExercise.this, NumberReport.class);
+                            Intent intent = new Intent(ColorExercise.this, NumberReport.class);
                             startActivity(intent);
                         } else {  //如果未做完
                             //弹出对话框
-                            AlertDialog.Builder builder = new AlertDialog.Builder(NumberExercise.this);
+                            AlertDialog.Builder builder = new AlertDialog.Builder(ColorExercise.this);
                             builder.setTitle("提示");
                             builder.setMessage("你还有未做的习题，是否提交？");
 
@@ -289,9 +292,9 @@ public class NumberExercise extends AppCompatActivity implements View.OnClickLis
                             builder.setPositiveButton("是", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                //跳转到练习报告页面
-                                Intent intent = new Intent(NumberExercise.this, NumberReport.class);
-                                startActivity(intent);
+                                    //跳转到练习报告页面
+                                    Intent intent = new Intent(ColorExercise.this, NumberReport.class);
+                                    startActivity(intent);
 
                                 }
                             });
@@ -359,9 +362,9 @@ public class NumberExercise extends AppCompatActivity implements View.OnClickLis
         //不设置圆角
         popupLayout.setUseRadius(false);
         //获取屏幕高度(像素)
-        int height = Utils.getScreenHeight(NumberExercise.this);
+        int height = Utils.getScreenHeight(ColorExercise.this);
         //获取屏幕密度
-        float density = Utils.getScreenDensity(NumberExercise.this);
+        float density = Utils.getScreenDensity(ColorExercise.this);
         //计算屏幕高度（dp）
         int screenHeight = (int) (height / density);
         //设置弹出窗高度
@@ -369,6 +372,7 @@ public class NumberExercise extends AppCompatActivity implements View.OnClickLis
         //从底部弹出
         popupLayout.show(PopupLayout.POSITION_BOTTOM);
     }
+
 
 
 }
