@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_height="match_parent">
+
+<!--    练习记录子布局-->
+
+<!--    圆形图片-->
+    <com.chenke.flashcards.util.CircleImageView
+        android:id="@+id/image"
+        android:layout_margin="10dp"
+        android:layout_gravity="center"
+        android:src="@drawable/rcolor"
+        android:layout_width="0dp"
+        android:layout_weight="0.5"
+        android:layout_height="50dp"/>
+
+    <LinearLayout
+        android:layout_gravity="center"
+        android:gravity="left"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_weight="2"
+        android:layout_height="wrap_content">
+
+        <!--    中间练习类型-->
+        <TextView
+            android:id="@+id/text_type"
+            android:text="数字练习"
+            android:textSize="17sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <!--    中间下面日期时间-->
+        <TextView
+            android:text="03-04 12:23"
+            android:id="@+id/text_startTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
+<!--    右边练习时长-->
+    <TextView
+        android:layout_marginRight="20dp"
+        android:layout_gravity="center"
+        android:gravity="right"
+        android:text="30分钟"
+        android:textSize="17sp"
+        android:textColor="@color/blue_dark"
+        android:id="@+id/text_duration"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

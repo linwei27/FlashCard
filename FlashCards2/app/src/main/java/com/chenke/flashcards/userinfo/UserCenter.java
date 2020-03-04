@@ -54,6 +54,8 @@ public class UserCenter extends AppCompatActivity implements View.OnClickListene
                 startActivity(intent);
                 break;
             case R.id.prac:  //练习记录
+                Intent intent1 = new Intent(UserCenter.this,PracRecords.class);
+                startActivity(intent1);
                 break;
             case R.id.help:  //帮助
                 break;
