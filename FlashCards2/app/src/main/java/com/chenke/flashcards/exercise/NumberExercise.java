@@ -38,6 +38,8 @@ public class NumberExercise extends AppCompatActivity implements View.OnClickLis
 
     private ViewPager vp_content;  //viewpager
 
+    private String mode;  //模式
+
     //答题卡按钮
     private Button btn1;
     private Button btn2;
@@ -68,7 +70,7 @@ public class NumberExercise extends AppCompatActivity implements View.OnClickLis
 
         //获取模式名称
         Intent intent = getIntent();
-        String mode = intent.getStringExtra("mode");
+        mode = intent.getStringExtra("mode");
 
         //困难模式倒计时
         if (mode.contains("困难")) {
@@ -208,6 +210,11 @@ public class NumberExercise extends AppCompatActivity implements View.OnClickLis
     public View getCardView() {
         LayoutInflater layoutInflater = getLayoutInflater();
         View view = layoutInflater.inflate(R.layout.activity_card, null);
+
+        //获取答题卡mode
+        TextView textView = view.findViewById(R.id.text_mode);
+        //给答题卡设置mode
+        textView.setText(mode);
 
         //获取题目
         btn1 = view.findViewById(R.id.sub1);
