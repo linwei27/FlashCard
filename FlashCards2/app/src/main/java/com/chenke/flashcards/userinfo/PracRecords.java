@@ -67,29 +67,29 @@ public class PracRecords extends AppCompatActivity implements MyListViewUtils.Lo
     }
 
     private void initPracRecord() {
-        PracRecord record1 = new PracRecord("数字练习","45分钟",getCurrentTime(1583299732L),R.drawable.rcolor);
+        PracRecord record1 = new PracRecord("数字练习","4分钟",getCurrentTime(1583299732L),R.drawable.rnumber);
         list.add(record1);
-        PracRecord record2 = new PracRecord("数字练习","45分钟",getCurrentTime(1583299732L),R.drawable.rcolor);
+        PracRecord record2 = new PracRecord("数字练习","12分钟",getCurrentTime(1583299732L),R.drawable.rnumber);
         list.add(record2);
-        PracRecord record3 = new PracRecord("颜色练习","45分钟",getCurrentTime(1583299732L),R.drawable.rcolor);
+        PracRecord record3 = new PracRecord("颜色练习","5分钟",getCurrentTime(1583299732L),R.drawable.rcolor);
         list.add(record3);
-        PracRecord record4 = new PracRecord("数字练习","45分钟",getCurrentTime(1583299732L),R.drawable.rcolor);
+        PracRecord record4 = new PracRecord("数字练习","23分钟",getCurrentTime(1583299732L),R.drawable.rnumber);
         list.add(record4);
-        PracRecord record5 = new PracRecord("颜色练习","45分钟",getCurrentTime(1583299732L),R.drawable.rcolor);
+        PracRecord record5 = new PracRecord("颜色练习","13分钟",getCurrentTime(1583299732L),R.drawable.rcolor);
         list.add(record5);
-        PracRecord record6 = new PracRecord("数字练习","45分钟",getCurrentTime(1583299732L),R.drawable.rcolor);
+        PracRecord record6 = new PracRecord("数字练习","17分钟",getCurrentTime(1583299732L),R.drawable.rnumber);
         list.add(record6);
-        PracRecord record7 = new PracRecord("数字练习","45分钟",getCurrentTime(1583299732L),R.drawable.rcolor);
+        PracRecord record7 = new PracRecord("形状练习","16分钟",getCurrentTime(1583299732L),R.drawable.rshape);
         list.add(record7);
-        PracRecord record8 = new PracRecord("形状练习","45分钟",getCurrentTime(1583299732L),R.drawable.rcolor);
+        PracRecord record8 = new PracRecord("形状练习","5分钟",getCurrentTime(1583299732L),R.drawable.rshape);
         list.add(record8);
-        PracRecord record9 = new PracRecord("数字练习","45分钟",getCurrentTime(1583299732L),R.drawable.rcolor);
+        PracRecord record9 = new PracRecord("数字练习","8分钟",getCurrentTime(1583299732L),R.drawable.rnumber);
         list.add(record9);
-        PracRecord record10 = new PracRecord("数字练习","45分钟",getCurrentTime(1583299732L),R.drawable.rcolor);
+        PracRecord record10 = new PracRecord("形状练习","45分钟",getCurrentTime(1583299732L),R.drawable.rshape);
         list.add(record10);
-        PracRecord record11 = new PracRecord("数字练习","45分钟",getCurrentTime(1583299732L),R.drawable.rcolor);
+        PracRecord record11 = new PracRecord("数字练习","45分钟",getCurrentTime(1583299732L),R.drawable.rnumber);
         list.add(record11);
-        PracRecord record12 = new PracRecord("数字练习","45分钟",getCurrentTime(1583299732L),R.drawable.rcolor);
+        PracRecord record12 = new PracRecord("数字练习","45分钟",getCurrentTime(1583299732L),R.drawable.rnumber);
         list.add(record12);
     }
 

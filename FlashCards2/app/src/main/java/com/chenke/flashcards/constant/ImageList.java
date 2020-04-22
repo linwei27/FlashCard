@@ -13,6 +13,7 @@ public class ImageList {
         imageList.add(R.drawable.banner_3);
         imageList.add(R.drawable.banner_4);
         imageList.add(R.drawable.banner_5);
+        imageList.add(R.drawable.banner_6);
         return imageList;
     }
 }

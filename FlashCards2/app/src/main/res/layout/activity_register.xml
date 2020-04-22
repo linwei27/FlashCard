@@ -18,7 +18,7 @@
         android:layout_gravity="center"
         android:id="@+id/image_logo"
         android:scaleType="centerCrop"
-        android:src="@drawable/app_logo"
+        android:src="@drawable/logo"
         android:layout_width="90dp"
         android:layout_height="90dp"/>
 

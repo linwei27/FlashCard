@@ -1,10 +1,10 @@
 package com.chenke.flashcards.fragment;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -17,6 +17,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.chenke.flashcards.R;
@@ -27,7 +29,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class ShapeFragment extends Fragment implements PaletteView.Callback, Handler.Callback{
+public class ShapeFragment extends Fragment implements PaletteView.Callback, Handler.Callback, View.OnClickListener{
     protected View mView;
     public static Context mContext;
 
@@ -38,13 +40,31 @@ public class ShapeFragment extends Fragment implements PaletteView.Callback, Han
     public static final int MSG_SAVE_FAILED = 2;
     public static Handler mHandler;
 
+    private int i = 1;
+
+    private ImageView img_shape;  //顶部图形图片
+    private Button btn_previous;  //上一个按钮
+    private Button btn_next;  //下一个按钮
+
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mContext = getActivity();
+        mContext = getContext();
         mView = inflater.inflate(R.layout.fragment_shape,container,false);
         mPaletteView = mView.findViewById(R.id.palette);
+
+        //获取控件
+        img_shape = mView.findViewById(R.id.shape);
+        btn_previous = mView.findViewById(R.id.previous);
+        btn_next = mView.findViewById(R.id.next);
+
+        //注册监听器
+        btn_previous.setOnClickListener(this);
+        btn_next.setOnClickListener(this);
+
+
         mPaletteView.setCallback(this);
         return mView;
     }
@@ -132,6 +152,63 @@ public class ShapeFragment extends Fragment implements PaletteView.Callback, Han
         mSaveProgressDlg.setMessage("正在保存,请稍候...");
         mSaveProgressDlg.setCancelable(false);
     }
+
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.previous:
+                //切换数字
+                previous();
+                //清除画板
+                mPaletteView.clear();
+                break;
+            case R.id.next:
+                next();
+                mPaletteView.clear();
+                break;
+        }
+    }
+
+
+
+    //切换下一张图片
+    private void next() {
+        //先判断是否是最后一张，如果是给出提示
+        if (i == 9) {
+            //提示信息
+            Toast.makeText(mContext, "这已经是最后一张图片了！",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        i++;
+        String imageName = "shape0" + i;
+
+
+        int resID = getResources().getIdentifier(imageName,"drawable","com.chenke.flashcards");
+        Drawable image = getResources().getDrawable(resID);
+        img_shape.setImageDrawable(image);
+
+        Log.e("打印：","下一个");
+    }
+
+    //切换上一张图片
+    private void previous() {
+        //先判断是否是第一张，是的话给出提示
+        if (i == 1){
+            //提示信息
+            Toast.makeText(mContext, "这已经是第一张图片了！",Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        i--;
+        String imageName = "shape0" + i;
+
+        int resID = getResources().getIdentifier(imageName,"drawable","com.chenke.flashcards");
+        Drawable image = getResources().getDrawable(resID);
+        img_shape.setImageDrawable(image);
+        Log.e("打印：","上一个");
+    }
+
 
 
 }

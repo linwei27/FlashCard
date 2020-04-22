@@ -1,7 +1,6 @@
 package com.chenke.flashcards.fragment;
 
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -15,8 +14,6 @@ import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,26 +52,24 @@ public class NumberFragment extends Fragment implements View.OnLongClickListener
         mView = inflater.inflate(R.layout.fragment_number,container,false);
         //获取画板
         mPaletteView = mView.findViewById(R.id.palette);
-        mPaletteView.setCallback(this);
-        return mView;
-    }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        btn_number = getActivity().findViewById(R.id.btn_number);
-        btn_previous = getActivity().findViewById(R.id.btn_previous);
-        btn_next = getActivity().findViewById(R.id.btn_next);
+        btn_number = mView.findViewById(R.id.btn_number);
+        btn_previous = mView.findViewById(R.id.btn_previous);
+        btn_next = mView.findViewById(R.id.btn_next);
 
         //注册监听器
-        //btn_number.setOnClickListener(this);
         btn_previous.setOnClickListener(this);
         btn_next.setOnClickListener(this);
 
         btn_previous.setOnLongClickListener(this);
         btn_next.setOnLongClickListener(this);
 
+
+        mPaletteView.setCallback(this);
+        return mView;
     }
+
+
 
     //点击实现的方法
     @Override
