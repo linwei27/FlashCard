@@ -44,6 +44,7 @@
         <activity android:name=".userinfo.PracRecords"/>
         <activity android:name=".userinfo.Help"/>
         <activity android:name=".userinfo.About"/>
+        <activity android:name=".exercise.ShapeExercise"/>
     </application>
 
 </manifest>

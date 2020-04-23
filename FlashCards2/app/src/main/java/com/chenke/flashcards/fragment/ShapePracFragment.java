@@ -24,10 +24,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
-public class ColorPracFragment extends Fragment implements View.OnClickListener, TextToSpeech.OnInitListener  {
+public class ShapePracFragment extends Fragment implements View.OnClickListener, TextToSpeech.OnInitListener {
+
     protected View mView;  //视图对象
     protected Context mContext;  //上下文对象
-    private int position;  //位置
+    private int position;  //位置&&题号
     private String question;  //问题
     private String answer;  //答案
     private String errList[];  //错误选项
@@ -58,31 +59,28 @@ public class ColorPracFragment extends Fragment implements View.OnClickListener,
     private ImageView t_C;
     private ImageView t_D;
 
-    //颜色数组
-    private String colorName[] = {
-            "红色",
-            "橙色",
-            "黄色",
-            "绿色",
-            "蓝色",
-            "青色",
-            "紫色",
+    //形状名称数组
+    private String shapeName[] = {
+            "圆形","三角形","长方形","正方形","心形","五角星形",
+            "球体","圆柱体","圆锥体"
     };
 
-    //颜色值数组
-    private int colorValue[] = {
-            Color.RED,
-            Color.rgb(255,97,0),
-            Color.YELLOW,
-            Color.GREEN,
-            Color.BLUE,
-            Color.CYAN,
-            Color.rgb(128,0,128)
+    //形状图片数组
+    private int shapeValue[] = {
+            R.drawable.shape01,
+            R.drawable.shape02,
+            R.drawable.shape03,
+            R.drawable.shape04,
+            R.drawable.shape05,
+            R.drawable.shape06,
+            R.drawable.shape07,
+            R.drawable.shape08,
+            R.drawable.shape09,
     };
 
 
-    public static ColorPracFragment newInstance(String mode,int position,String question, String answer, String errList[]) {
-        ColorPracFragment fragment = new ColorPracFragment();
+    public static ShapePracFragment newInstance(String mode,int position,String question, String answer, String errList[]) {
+        ShapePracFragment fragment = new ShapePracFragment();
         Bundle bundle = new Bundle();
         bundle.putString("mode",mode);
         bundle.putInt("position", position);
@@ -107,7 +105,7 @@ public class ColorPracFragment extends Fragment implements View.OnClickListener,
         }
 
         //根据布局文件生成视图对象
-        mView = inflater.inflate(R.layout.fragment_colorprac,container,false);
+        mView = inflater.inflate(R.layout.fragment_shapeprac,container,false);
 
         //new一个tts对象
         textToSpeech = new TextToSpeech(mContext,this);
@@ -123,7 +121,7 @@ public class ColorPracFragment extends Fragment implements View.OnClickListener,
         }
 
         //上面的先保留
-        ttString = colorName[Integer.parseInt(answer)];
+        ttString = shapeName[Integer.parseInt(answer)];
 
 
         //获取选项
@@ -141,10 +139,11 @@ public class ColorPracFragment extends Fragment implements View.OnClickListener,
         //随机打乱数组顺序，构成选项
         String finalarr[] = RandomSort.changePosition(arr);
 
-        t_A.setBackgroundColor(colorValue[Integer.parseInt(finalarr[0])]);
-        t_B.setBackgroundColor(colorValue[Integer.parseInt(finalarr[1])]);
-        t_C.setBackgroundColor(colorValue[Integer.parseInt(finalarr[2])]);
-        t_D.setBackgroundColor(colorValue[Integer.parseInt(finalarr[3])]);
+
+        t_A.setImageResource(shapeValue[Integer.parseInt(finalarr[0])]);
+        t_B.setImageResource(shapeValue[Integer.parseInt(finalarr[1])]);
+        t_C.setImageResource(shapeValue[Integer.parseInt(finalarr[2])]);
+        t_D.setImageResource(shapeValue[Integer.parseInt(finalarr[3])]);
 
 //        t_A.setText(finalarr[0]);
 //        t_B.setText(finalarr[1]);
@@ -202,7 +201,7 @@ public class ColorPracFragment extends Fragment implements View.OnClickListener,
             btnD.setTextColor(getResources().getColor(R.color.blue));
 
         } else if (view == btnB) {
-           // Toast.makeText(getActivity(),"用户的答案" + t_B.getText(),Toast.LENGTH_SHORT).show();
+            // Toast.makeText(getActivity(),"用户的答案" + t_B.getText(),Toast.LENGTH_SHORT).show();
             btnB.setBackground(getResources().getDrawable(R.drawable.btn_circle4));
             btnB.setTextColor(getResources().getColor(R.color.white));
             btnC.setBackground(getResources().getDrawable(R.drawable.btn_circle3));

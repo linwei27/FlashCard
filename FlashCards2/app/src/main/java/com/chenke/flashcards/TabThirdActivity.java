@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.chenke.flashcards.constant.ImageList;
 import com.chenke.flashcards.exercise.ColorExercise;
 import com.chenke.flashcards.exercise.NumberExercise;
+import com.chenke.flashcards.exercise.ShapeExercise;
 import com.chenke.flashcards.util.Utils;
 import com.chenke.flashcards.widget.BannerPager;
 
@@ -141,7 +142,7 @@ public class TabThirdActivity extends AppCompatActivity implements BannerPager.B
                 intent.putExtra("mode",type + "(简单模式)");
                 startActivity(intent);
             } else {
-                Intent intent = new Intent(this, NumberExercise.class);
+                Intent intent = new Intent(this, ShapeExercise.class);
                 intent.putExtra("mode",type + "(简单模式)");
                 startActivity(intent);
             }
@@ -158,7 +159,7 @@ public class TabThirdActivity extends AppCompatActivity implements BannerPager.B
                 intent.putExtra("mode",type + "(中等模式)");
                 startActivity(intent);
             } else {
-                Intent intent = new Intent(this, NumberExercise.class);
+                Intent intent = new Intent(this, ShapeExercise.class);
                 intent.putExtra("mode",type + "(中等模式)");
                 startActivity(intent);
             }
@@ -176,7 +177,7 @@ public class TabThirdActivity extends AppCompatActivity implements BannerPager.B
                 intent.putExtra("mode",type + "(困难模式)");
                 startActivity(intent);
             } else {
-                Intent intent = new Intent(this, NumberExercise.class);
+                Intent intent = new Intent(this, ShapeExercise.class);
                 intent.putExtra("mode",type + "(困难模式)");
                 startActivity(intent);
             }
