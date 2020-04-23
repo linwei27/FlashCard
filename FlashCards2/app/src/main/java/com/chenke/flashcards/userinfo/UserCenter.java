@@ -58,8 +58,10 @@ public class UserCenter extends AppCompatActivity implements View.OnClickListene
                 startActivity(intent1);
                 break;
             case R.id.help:  //帮助
+                startActivity(new Intent(UserCenter.this,Help.class));
                 break;
             case R.id.about:  //关于
+                startActivity(new Intent(UserCenter.this,About.class));
                 break;
 
         }

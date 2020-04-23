@@ -42,6 +42,8 @@
         <activity android:name=".userinfo.StudyProgress"/>
         <activity android:name=".exercise.ColorExercise"/>
         <activity android:name=".userinfo.PracRecords"/>
+        <activity android:name=".userinfo.Help"/>
+        <activity android:name=".userinfo.About"/>
     </application>
 
 </manifest>
