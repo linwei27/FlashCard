@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -93,7 +94,8 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
             return;
         }
         //调用接口，判断注册成功与否
-        if (!"后台返回结果为真".isEmpty()) {
+        VeriftyCode veriftyCode = new VeriftyCode();
+        if (veriftyCode.checkCode(verify,phone).equals("success")) {
             //注册成功跳转到登录注册页面
             //弹出对话框
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -125,7 +127,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
         } else {
             //注册失败，返回失败信息。
-            Toast.makeText(Register.this, "手机号错误或已被注册",Toast.LENGTH_LONG).show();
+            Toast.makeText(Register.this, veriftyCode.checkCode(verify,phone),Toast.LENGTH_LONG).show();
             return;
         }
     }
@@ -143,5 +145,8 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         VeriftyCode veriftyCode = new VeriftyCode();
         //发送验证码
         veriftyCode.sendVeriftyCode(phone);
+        //提示发送信息
+        Toast.makeText(Register.this, "短信验证码发送成功",Toast.LENGTH_LONG).show();
+
     }
 }

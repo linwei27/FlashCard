@@ -98,11 +98,16 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             return;
         }
         //调用接口，判断手机号和验证码是否正确匹配
-        if (true) {
+        VeriftyCode veriftyCode = new VeriftyCode();
+        if (veriftyCode.checkCode(verify,phone).equals("success")) {
             //记录登录状态，保存用户信息
             User user = new User();
             user.setPhone(phone);
-            user.setUserName(phone);  //用户名暂定使用电话号码
+
+            //截取电话号码后四位
+            String name = phone.substring(phone.length()-4);
+
+            user.setUserName(name);  //用户名暂定使用电话号码后四位
 
             saveUser(user);
 
@@ -113,7 +118,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
         } else {
             //提示信息
-            Toast.makeText(Login.this, "手机号或验证码错误",Toast.LENGTH_LONG).show();
+            Toast.makeText(Login.this, veriftyCode.checkCode(verify,phone),Toast.LENGTH_LONG).show();
             return;
         }
 

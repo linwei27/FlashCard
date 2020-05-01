@@ -4,6 +4,7 @@ import android.app.ActivityGroup;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.widget.LinearLayout;
 import android.os.Bundle;
 import android.view.View;
@@ -38,6 +39,7 @@ public class MainActivity extends ActivityGroup implements View.OnClickListener 
 
         Intent intent = this.getIntent();
         String msg = intent.getStringExtra("msg");
+
         if (msg != null && msg.equals("loginsuccess")) {
             changeContainerView(ll_fourth, "center");
         } else if (msg != null && msg.equals("logout")) {
@@ -74,6 +76,7 @@ public class MainActivity extends ActivityGroup implements View.OnClickListener 
 
     //把内容视图切换到对应的Activity
     private void toActivity(String label, Class<?> cls) {
+
         Intent intent = new Intent(this, cls).putExtras(mBundle);
         //移除内容框架下所有的下级视图
         ll_container.removeAllViews();

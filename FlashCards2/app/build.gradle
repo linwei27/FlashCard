@@ -14,6 +14,11 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            //2020/4/27添加，打包时报错，添加此忽略
+            aaptOptions.cruncherEnabled = false
+            aaptOptions.useNewCruncher = false
+
         }
     }
 }
@@ -22,7 +27,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support:design:28.0.0'
-    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+    implementation "com.squareup.okhttp3:okhttp:4.5.0"
     implementation 'com.github.CodingEnding:PopupLayout:v1.0'
 
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'

@@ -9,12 +9,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.chenke.flashcards.MainActivity;
 import com.chenke.flashcards.R;
 
 public class UserCenter extends AppCompatActivity implements View.OnClickListener{
     private Button btn_logout;  //退出登录
+
+    private TextView text_user;  //用户名
 
     private LinearLayout study; //学习进度
     private LinearLayout prac;  //练习记录
@@ -26,6 +29,15 @@ public class UserCenter extends AppCompatActivity implements View.OnClickListene
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_usercenter);
+
+        //用户名：手机号后四位
+        text_user = findViewById(R.id.text_user);
+
+        SharedPreferences sp = this.getSharedPreferences("user_info", Context.MODE_PRIVATE);
+        String name = sp.getString("name","10001");
+        if (name != null && !name.isEmpty()) {
+            text_user.setText(name + "!");
+        }
 
         //退出登录
         btn_logout = findViewById(R.id.btn_logout);

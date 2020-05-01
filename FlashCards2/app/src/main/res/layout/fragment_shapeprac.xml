@@ -27,7 +27,6 @@
         android:layout_height="wrap_content">
 
         <!--    题目正文-->
-
         <!--        题号-->
         <TextView
             android:id="@+id/text_order"
