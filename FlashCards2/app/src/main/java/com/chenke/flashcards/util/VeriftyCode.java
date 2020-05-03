@@ -37,9 +37,21 @@ public class VeriftyCode extends AppCompatActivity {
             @Override
             public void run() {
                 Request request = new Request.Builder()
-                        .url("http://192.168.124.24:8080//user/getTestCode?phoneNumber=" + phone)
+//                        .url("http://192.168.124.24:8080//user/getTestCode?phoneNumber=" + phone)
+                        .url("http://192.168.0.105:8080//user/getTestCode?phoneNumber=" + phone)
+//                        .url("http://172.20.10.2:8080//user/getTestCode?phoneNumber=" + phone)
                         .build();
                 Call call = okHttpClient.newCall(request);
+//                 同步请求
+//                try {
+//                    Response response = call.execute();
+//                    //获取响应数据
+//                    //String result = response.body().string();
+//                    Log.e("msg",response.body().string());
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+                    //异步请求
                 call.enqueue(new Callback() {
                     @Override
                     public void onFailure(@NotNull Call call, @NotNull IOException e) {
@@ -67,7 +79,9 @@ public class VeriftyCode extends AppCompatActivity {
             @Override
             public void run() {
                 Request request = new Request.Builder()
-                        .url("http://192.168.124.24:8080/user/judgeTestCode?verifyCode=" + code + "&" + "phoneNumber=" + phone)
+//                        .url("http://192.168.124.24:8080/user/judgeTestCode?verifyCode=" + code + "&" + "phoneNumber=" + phone)
+                        .url("http://192.168.0.105:8080/user/judgeTestCode?verifyCode=" + code + "&" + "phoneNumber=" + phone)
+//                        .url("http://172.20.10.2:8080/user/judgeTestCode?verifyCode=" + code + "&" + "phoneNumber=" + phone)
                         .build();
                 Call call = okHttpClient.newCall(request);
 
