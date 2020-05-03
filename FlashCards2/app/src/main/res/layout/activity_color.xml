@@ -30,6 +30,17 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"/>
 
+    <!--    进度条-->
+    <ProgressBar
+        android:id="@+id/prb_rate"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <!--    说明文字-->
+    <TextView
+        android:id="@+id/tv_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
     <!--    左右按钮-->
     <RelativeLayout
