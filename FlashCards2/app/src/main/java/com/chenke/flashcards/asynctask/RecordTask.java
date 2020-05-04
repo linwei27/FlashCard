@@ -25,10 +25,6 @@ public class RecordTask extends AsyncTask<String,Integer,String> {
         this.mContext = mContext;
     }
 
-    public String getResult() {
-        return result;
-    }
-
     public RecordTask() {
     }
 
@@ -75,10 +71,7 @@ public class RecordTask extends AsyncTask<String,Integer,String> {
             Toast.makeText(mContext,"保存进度成功！",Toast.LENGTH_LONG).show();
         } else if (s.equals("failed")){
             Toast.makeText(mContext,"保存进度失败！",Toast.LENGTH_LONG).show();
-        } else {  //取进度，返回一个数字
-            result = s;
         }
-
 
     }
 }
