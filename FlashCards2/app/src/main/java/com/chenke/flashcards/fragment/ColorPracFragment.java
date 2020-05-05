@@ -7,6 +7,7 @@ import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -93,6 +94,20 @@ public class ColorPracFragment extends Fragment implements View.OnClickListener,
         return fragment;
     }
 
+    /**
+     * 颜色下标转换
+     */
+    public int convertColor(String color) {
+        int j = 0;
+        for (int i=0; i < 7; i++) {
+            if (color.equals(colorName[i])) {
+                j = i;
+                break;
+            }
+        }
+        return j;
+    }
+
 
     @Nullable
     @Override
@@ -123,7 +138,7 @@ public class ColorPracFragment extends Fragment implements View.OnClickListener,
         }
 
         //上面的先保留
-        ttString = colorName[Integer.parseInt(answer)];
+        //ttString = colorName[Integer.parseInt(answer)];
 
 
         //获取选项
@@ -141,10 +156,11 @@ public class ColorPracFragment extends Fragment implements View.OnClickListener,
         //随机打乱数组顺序，构成选项
         String finalarr[] = RandomSort.changePosition(arr);
 
-        t_A.setBackgroundColor(colorValue[Integer.parseInt(finalarr[0])]);
-        t_B.setBackgroundColor(colorValue[Integer.parseInt(finalarr[1])]);
-        t_C.setBackgroundColor(colorValue[Integer.parseInt(finalarr[2])]);
-        t_D.setBackgroundColor(colorValue[Integer.parseInt(finalarr[3])]);
+
+        t_A.setBackgroundColor(colorValue[convertColor(finalarr[0])]);
+        t_B.setBackgroundColor(colorValue[convertColor(finalarr[1])]);
+        t_C.setBackgroundColor(colorValue[convertColor(finalarr[2])]);
+        t_D.setBackgroundColor(colorValue[convertColor(finalarr[3])]);
 
 //        t_A.setText(finalarr[0]);
 //        t_B.setText(finalarr[1]);

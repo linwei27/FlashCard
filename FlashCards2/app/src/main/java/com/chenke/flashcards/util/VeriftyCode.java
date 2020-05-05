@@ -1,9 +1,11 @@
 package com.chenke.flashcards.util;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -43,26 +45,26 @@ public class VeriftyCode extends AppCompatActivity {
                         .build();
                 Call call = okHttpClient.newCall(request);
 //                 同步请求
-//                try {
-//                    Response response = call.execute();
-//                    //获取响应数据
-//                    //String result = response.body().string();
-//                    Log.e("msg",response.body().string());
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
+                try {
+                    Response response = call.execute();
+                    //获取响应数据
+                    //String result = response.body().string();
+                    Log.e("msg",response.body().string());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                     //异步请求
-                call.enqueue(new Callback() {
-                    @Override
-                    public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                        Log.e("msg","请求失败");
-                    }
-
-                    @Override
-                    public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                        Log.e("msg",response.body().string());
-                    }
-                });
+//                call.enqueue(new Callback() {
+//                    @Override
+//                    public void onFailure(@NotNull Call call, @NotNull IOException e) {
+//                        Log.e("msg","请求失败");
+//                    }
+//
+//                    @Override
+//                    public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+//                        Log.e("msg",response.body().string());
+//                    }
+//                });
             }
         }.start();
         //Log.e("msg","发送成功");
@@ -85,17 +87,25 @@ public class VeriftyCode extends AppCompatActivity {
                         .build();
                 Call call = okHttpClient.newCall(request);
 
-                call.enqueue(new Callback() {
-                    @Override
-                    public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                        Log.e("msg","请求失败");
-                    }
+                try {
+                    Response response = call.execute();
+                    //获取响应数据
+                    result = response.body().string();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
-                    @Override
-                    public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                        result = response.body().string();
-                    }
-                });
+//                call.enqueue(new Callback() {
+//                    @Override
+//                    public void onFailure(@NotNull Call call, @NotNull IOException e) {
+//                        Log.e("msg","请求失败");
+//                    }
+//
+//                    @Override
+//                    public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+//                        result = response.body().string();
+//                    }
+//                });
 
 
             }
@@ -103,6 +113,8 @@ public class VeriftyCode extends AppCompatActivity {
         //Log.e("msg","发送成功");
         return result;
     }
+
+
 
 
 }

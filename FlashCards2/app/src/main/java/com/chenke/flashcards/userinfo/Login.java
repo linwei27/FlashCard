@@ -1,12 +1,16 @@
 package com.chenke.flashcards.userinfo;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +22,11 @@ import com.chenke.flashcards.bean.User;
 import com.chenke.flashcards.util.TimeCount;
 import com.chenke.flashcards.util.VeriftyCode;
 
+import okhttp3.Call;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 public class Login extends AppCompatActivity implements View.OnClickListener {
 
     private Button btn_verify;  //发送验证码按钮
@@ -28,6 +37,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     private Toolbar tl_head;  //顶部工具栏
 
     private TimeCount time;  //重发验证码工具类
+
+    private String result;  //接收结果
+
+    private String phone;  //手机号
 
 
 
@@ -88,7 +101,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     //登录接口
     private void login_now(View v) {
         //获取输入框内手机号
-        String phone = edit_phone.getText().toString();
+        phone = edit_phone.getText().toString();
         //获取输入框内验证码
         String verify = edit_verify.getText().toString();
         //如果手机号或者验证码为空。给出提示：不允许登录
@@ -98,29 +111,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             return;
         }
         //调用接口，判断手机号和验证码是否正确匹配
-        VeriftyCode veriftyCode = new VeriftyCode();
-        if (veriftyCode.checkCode(verify,phone).equals("success")) {
-            //记录登录状态，保存用户信息
-            User user = new User();
-            user.setPhone(phone);
-
-            //截取电话号码后四位
-            String name = phone.substring(phone.length()-4);
-
-            user.setUserName(name);  //用户名暂定使用电话号码后四位
-
-            saveUser(user);
-
-            //跳转到登录成功页面（用户中心）替换我的界面view
-            Intent intent = new Intent(this, MainActivity.class);
-            intent.putExtra("msg","loginsuccess");
-            startActivity(intent);
-
-        } else {
-            //提示信息
-            Toast.makeText(Login.this, veriftyCode.checkCode(verify,phone),Toast.LENGTH_LONG).show();
-            return;
-        }
+        //调用异步任务
+        VerifyCodeTask task = new VerifyCodeTask();
+        String url = "http://192.168.0.105:8080/user/judgeTestCode?verifyCode=" + verify + "&" + "phoneNumber=" + phone;
+        task.execute(url);
 
 
     }
@@ -130,7 +124,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
         //将手机号传给服务端
         //获取输入框内手机号
-        String phone = edit_phone.getText().toString();
+        phone = edit_phone.getText().toString();
         if (phone.isEmpty()) {
             //提示信息
             Toast.makeText(Login.this, "手机号不能为空",Toast.LENGTH_LONG).show();
@@ -138,9 +132,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         }
         time.start();
         //调用服务端接口，将手机号传给服务端
-        VeriftyCode veriftyCode = new VeriftyCode();
-        //发送验证码
-        veriftyCode.sendVeriftyCode(phone);
+        //调用异步任务
+        SendCodeTask task = new SendCodeTask();
+        String url = "http://192.168.0.105:8080//user/getTestCode?phoneNumber=" + phone;
+        task.execute(url);
 
     }
 
@@ -153,6 +148,100 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         editor.commit();//必须提交，否则保存不成功
 
     }
+
+
+    //验证异步任务
+    public class VerifyCodeTask extends AsyncTask<String, Integer, String> {
+
+        @Override
+        protected String doInBackground(String... strings) {
+            Log.e("请求参数", strings[0]);
+            OkHttpClient okHttpClient = new OkHttpClient();
+            final Request request = new Request.Builder()
+                    .url(strings[0])
+                    .get()   //默认get请求
+                    .build();
+            Call call = okHttpClient.newCall(request);
+
+            try {
+                Response response = call.execute();
+                result = response.body().string();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            //参数s是doInbackground的返回值
+            Log.e("返回值", s);
+            if (!s.equals("success")) {
+                Toast.makeText(Login.this, s, Toast.LENGTH_SHORT);
+            } else {
+                Toast.makeText(Login.this, s, Toast.LENGTH_SHORT);
+                //记录登录状态，保存用户信息
+                User user = new User();
+                user.setPhone(phone);
+
+                //截取电话号码后四位
+                String name = phone.substring(phone.length()-4);
+
+                user.setUserName(name);  //用户名暂定使用电话号码后四位
+
+                saveUser(user);
+
+                //跳转到登录成功页面（用户中心）替换我的界面view
+                Intent intent = new Intent(Login.this, MainActivity.class);
+                intent.putExtra("msg","loginsuccess");
+                startActivity(intent);
+            }
+        }
+
+
+    }
+
+
+    //发送验证码异步任务
+    public class SendCodeTask extends AsyncTask<String, Integer, String> {
+
+        @Override
+        protected String doInBackground(String... strings) {
+            Log.e("请求参数", strings[0]);
+            OkHttpClient okHttpClient = new OkHttpClient();
+            final Request request = new Request.Builder()
+                    .url(strings[0])
+                    .get()   //默认get请求
+                    .build();
+            Call call = okHttpClient.newCall(request);
+
+            try {
+                Response response = call.execute();
+                result = response.body().string();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            //参数s是doInbackground的返回值
+            Log.e("返回值", s);
+            if (!s.equals("success")) {
+                Toast.makeText(Login.this, s, Toast.LENGTH_SHORT);
+            } else {
+                Toast.makeText(Login.this, "发送验证码成功!", Toast.LENGTH_SHORT);
+
+            }
+        }
+
+
+    }
+
+
 }
 
 

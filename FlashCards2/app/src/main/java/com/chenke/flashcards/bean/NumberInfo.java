@@ -1,5 +1,9 @@
 package com.chenke.flashcards.bean;
 
+import android.content.Context;
+
+import com.chenke.flashcards.asynctask.GetSubjectTask;
+
 import java.util.ArrayList;
 
 public class NumberInfo {
@@ -42,7 +46,13 @@ public class NumberInfo {
     }
 
     //获取题目，请求服务端
-    public static ArrayList<NumberInfo> getNumberList() {
+    public  ArrayList<NumberInfo> getNumberList() {
+
+        //调用异步任务请求服务端
+//        GetSubjectTask task = new GetSubjectTask();
+//        String url = "http://192.168.0.105:8080//number/getNumQuestion?grade=1";
+//        task.execute(url);
+
         NumberInfo n1 = new NumberInfo();
         n1.setQuestion("请选出听到的数字");
         n1.setAnswer("1");
@@ -53,6 +63,7 @@ public class NumberInfo {
         n2.setAnswer("2");
         String b[] = {"5","3","4"};
         n2.setErrorList(b);
+
 
         ArrayList<NumberInfo> numberInfoArrayList = new ArrayList<>();
         numberInfoArrayList.add(n1);

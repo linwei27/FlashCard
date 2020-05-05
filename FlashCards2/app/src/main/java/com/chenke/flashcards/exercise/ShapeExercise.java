@@ -2,6 +2,7 @@ package com.chenke.flashcards.exercise;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -13,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,15 +22,24 @@ import com.chenke.flashcards.R;
 import com.chenke.flashcards.adapter.ColorPracAdapter;
 import com.chenke.flashcards.adapter.ShapePracAdapter;
 import com.chenke.flashcards.bean.NumberInfo;
+import com.chenke.flashcards.bean.Subject;
 import com.chenke.flashcards.fragment.ColorPracFragment;
 import com.chenke.flashcards.fragment.DynamicFragment;
 import com.chenke.flashcards.fragment.ShapePracFragment;
 import com.chenke.flashcards.util.Utils;
 import com.codingending.popuplayout.PopupLayout;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import okhttp3.Call;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class ShapeExercise extends AppCompatActivity implements View.OnClickListener {
 
@@ -40,6 +51,8 @@ public class ShapeExercise extends AppCompatActivity implements View.OnClickList
     private TextView text_time;  //计时
 
     private ViewPager vp_content;  //viewpager
+
+    private String mode;  //模式
 
     //答题卡按钮
     private Button btn1;
@@ -59,6 +72,9 @@ public class ShapeExercise extends AppCompatActivity implements View.OnClickList
     private int drelen = 60;  //倒计时60秒
     Timer timer = new Timer();
 
+    private TextView tvResult;
+    private ProgressBar prbRate;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,32 +85,53 @@ public class ShapeExercise extends AppCompatActivity implements View.OnClickList
         //获取计时控件
         text_time = findViewById(R.id.text_time);
 
+        //获取进度条和说明文字
+        tvResult = findViewById(R.id.tv_result);
+        prbRate = findViewById(R.id.prb_rate);
+        prbRate.setMax(100);
+
         //获取模式名称
         Intent intent = getIntent();
-        String mode = intent.getStringExtra("mode");
+        mode = intent.getStringExtra("mode");
 
-        //困难模式倒计时
-        if (mode.contains("困难")) {
-            //倒计时
-            timer.schedule(task, 1000, 1000);
-        } else {
-            //其它模式计时
-            handler.postDelayed(runnable, 1000);
+        //请求地址
+        String url = "http://192.168.0.105:8080//pattern/getPatQuestion?grade=1";
+
+        if (mode.contains("中等")) {
+            url = "http://192.168.0.105:8080//pattern/getPatQuestion?grade=2";
+        } else if (mode.contains("困难")) {
+            url = "http://192.168.0.105:8080//pattern/getPatQuestion?grade=2";
         }
 
-        //获取题目
-        ArrayList<NumberInfo> numberList = NumberInfo.getNumberList();
-        //构建适配器
-        ShapePracAdapter adapter = new ShapePracAdapter(
-                getSupportFragmentManager(), numberList, mode);
-        //获取翻页视图
-        vp_content = findViewById(R.id.vp_content);
-        //注册适配器
-        vp_content.setAdapter(adapter);
-        //设置限制页面数，解决不保存fragment状态的问题
-        vp_content.setOffscreenPageLimit(10);
-        //默认显示第一个视图
-        vp_content.setCurrentItem(0);
+
+        //调用异步任务获取题目
+        GetSubjectTask subjectTask = new GetSubjectTask();
+        subjectTask.execute(url);
+
+
+//
+//        //困难模式倒计时
+//        if (mode.contains("困难")) {
+//            //倒计时
+//            timer.schedule(task, 1000, 1000);
+//        } else {
+//            //其它模式计时
+//            handler.postDelayed(runnable, 1000);
+//        }
+//
+//        //获取题目
+//        ArrayList<NumberInfo> numberList = new NumberInfo().getNumberList();
+//        //构建适配器
+//        ShapePracAdapter adapter = new ShapePracAdapter(
+//                getSupportFragmentManager(), numberList, mode);
+//        //获取翻页视图
+//        vp_content = findViewById(R.id.vp_content);
+//        //注册适配器
+//        vp_content.setAdapter(adapter);
+//        //设置限制页面数，解决不保存fragment状态的问题
+//        vp_content.setOffscreenPageLimit(10);
+//        //默认显示第一个视图
+//        vp_content.setCurrentItem(0);
 
 
         img_back = findViewById(R.id.img_back);  //返回按钮
@@ -107,6 +144,111 @@ public class ShapeExercise extends AppCompatActivity implements View.OnClickList
         img_time.setOnClickListener(this);
 
     }
+
+
+    //获取题目异步任务
+    public class GetSubjectTask extends AsyncTask<String, Integer, ArrayList<NumberInfo>> {
+
+        private ArrayList<NumberInfo> list = new ArrayList<>();
+
+        @Override
+        protected void onPreExecute() {
+            tvResult.setText("开始获取题目！");
+        }
+
+        @Override
+        protected ArrayList<NumberInfo> doInBackground(String... strings) {
+            //Log.e("请求参数",strings[0]);
+            OkHttpClient okHttpClient = new OkHttpClient();
+            final Request request = new Request.Builder()
+                    .url(strings[0])
+                    .get()   //默认get请求
+                    .build();
+            Call call = okHttpClient.newCall(request);
+
+
+            int j = 0;
+            for (; j < 100; j+=8) {
+
+                publishProgress(j);
+
+                try {
+                    Thread.sleep(200);  //延时模拟慢动作
+                    Response response = call.execute();
+
+                    String responseData = response.body().string();
+                    //Log.e("msg",responseData);
+
+                    Gson gson = new Gson();
+
+                    //对于List，反序列化时必须提供它的Type，通过Gson提供的TypeToken<T>.getType()方法可以定义当前List的Type
+                    Type numberListType = new TypeToken<ArrayList<Subject>>() {
+                    }.getType();
+
+                    ArrayList<Subject> subjects = gson.fromJson(responseData, numberListType);
+
+                    //Log.e("msgsss",subjects.get(0).getValue().getQuestion());
+
+
+                    for (int i = 0; i < subjects.size(); i++) {
+                        //将题目信息添加到list列表
+                        list.add(subjects.get(i).getValue());
+                    }
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            return list;
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            prbRate.setProgress(values[0]);
+            tvResult.setText("正在获取题目，已完成 : " + values[0] + "%");
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<NumberInfo> numberInfos) {
+            tvResult.setText("题目获取完成！");
+
+            //获取到题目之后隐藏进度条等信息
+            prbRate.setVisibility(prbRate.GONE);
+            tvResult.setVisibility(tvResult.GONE);
+
+
+
+            //困难模式倒计时
+            if (mode.contains("困难")) {
+                //倒计时
+                timer.schedule(task, 1000, 1000);
+            } else {
+                //其它模式计时
+                handler.postDelayed(runnable, 1000);
+            }
+
+            //构建适配器
+            ShapePracAdapter adapter = new ShapePracAdapter(
+                getSupportFragmentManager(), numberInfos, mode);
+            //获取翻页视图
+            vp_content = findViewById(R.id.vp_content);
+            //注册适配器
+            vp_content.setAdapter(adapter);
+            //设置限制页面数，解决不保存fragment状态的问题
+            vp_content.setOffscreenPageLimit(10);
+            //默认显示第一个视图
+            vp_content.setCurrentItem(0);
+
+
+
+        }
+
+
+    }
+
+
 
     //倒计时
     TimerTask task = new TimerTask() {

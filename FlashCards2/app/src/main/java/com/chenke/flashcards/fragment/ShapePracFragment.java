@@ -61,7 +61,7 @@ public class ShapePracFragment extends Fragment implements View.OnClickListener,
 
     //形状名称数组
     private String shapeName[] = {
-            "圆形","三角形","长方形","正方形","心形","五角星形",
+            "圆形","三角形","长方形","正方形","心形","五角星",
             "球体","圆柱体","圆锥体"
     };
 
@@ -89,6 +89,23 @@ public class ShapePracFragment extends Fragment implements View.OnClickListener,
         bundle.putStringArray("errList",errList);
         fragment.setArguments(bundle);  //包裹塞给碎片
         return fragment;
+    }
+
+
+    /**
+     * 形状下标转换
+     * @param shape
+     * @return
+     */
+    public int convertShape(String shape) {
+        int j = 0;
+        for (int i=0; i < 9; i++) {
+            if (shape.equals(shapeName[i])) {
+                j = i;
+                break;
+            }
+        }
+        return j;
     }
 
 
@@ -121,7 +138,7 @@ public class ShapePracFragment extends Fragment implements View.OnClickListener,
         }
 
         //上面的先保留
-        ttString = shapeName[Integer.parseInt(answer)];
+        //ttString = shapeName[Integer.parseInt(answer)];
 
 
         //获取选项
@@ -140,10 +157,10 @@ public class ShapePracFragment extends Fragment implements View.OnClickListener,
         String finalarr[] = RandomSort.changePosition(arr);
 
 
-        t_A.setImageResource(shapeValue[Integer.parseInt(finalarr[0])]);
-        t_B.setImageResource(shapeValue[Integer.parseInt(finalarr[1])]);
-        t_C.setImageResource(shapeValue[Integer.parseInt(finalarr[2])]);
-        t_D.setImageResource(shapeValue[Integer.parseInt(finalarr[3])]);
+        t_A.setImageResource(shapeValue[convertShape(finalarr[0])]);
+        t_B.setImageResource(shapeValue[convertShape(finalarr[1])]);
+        t_C.setImageResource(shapeValue[convertShape(finalarr[2])]);
+        t_D.setImageResource(shapeValue[convertShape(finalarr[3])]);
 
 //        t_A.setText(finalarr[0]);
 //        t_B.setText(finalarr[1]);

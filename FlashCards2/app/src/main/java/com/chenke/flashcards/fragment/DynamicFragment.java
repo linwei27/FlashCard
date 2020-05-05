@@ -47,6 +47,8 @@ public class DynamicFragment extends Fragment implements View.OnClickListener, T
 
     public static int[] selectArray = new int[10];  //选择数组
 
+    private TextView text_question;  //询问方式
+
 
     //选项
     private Button btnA;
@@ -96,11 +98,16 @@ public class DynamicFragment extends Fragment implements View.OnClickListener, T
         TextView text_mode = mView.findViewById(R.id.text_mode);
         text_mode.setText(mode);
 
+        //获取询问方式
+        text_question = mView.findViewById(R.id.text_question);
+
         //如果是简单模式（数字，形状，图形），播放答案
         if (mode.contains("简单")) {
             ttString = answer;
         } else { //否则播放问题
             ttString = question;
+            //将询问方式改变
+            text_question.setText("请根据听到的内容选择:");
         }
 
         //获取选项

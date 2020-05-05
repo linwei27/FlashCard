@@ -264,12 +264,12 @@ public class ShapeStudy extends AppCompatActivity implements View.OnClickListene
                     .get()   //默认get请求
                     .build();
             Call call = okHttpClient.newCall(request);
-            int i = 0;
-            for (; i<= 100; i+=2) {
-                publishProgress(i);
+            int k = 0;
+            for (; k <= 100; k+=9) {
+                publishProgress(k);
                 try {
-                    Response response = call.execute();
                     Thread.sleep(200);
+                    Response response = call.execute();
                     result = response.body().string();
                 } catch (Exception e) {
                     e.printStackTrace();

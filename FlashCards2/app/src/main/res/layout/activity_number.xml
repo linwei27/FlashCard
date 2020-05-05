@@ -46,6 +46,7 @@
 <!--    说明文字-->
     <TextView
         android:id="@+id/tv_result"
+        android:textColor="@color/zfb"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
