@@ -293,6 +293,7 @@ public class ColorExercise extends AppCompatActivity implements View.OnClickList
                             }
                         });
 
+                        //对话框依附activity，弹出之前判断activity是否在活动状态
                         if (!isFinishing()) {
                             builder.show();
                         }

@@ -430,7 +430,7 @@ public class NumberExercise extends AppCompatActivity implements View.OnClickLis
                                 }
                             });
 
-
+                            //对话框依附activity，弹出之前判断activity是否在活动状态
                             if (!isFinishing()) {
                                 builder.show();
                             }
