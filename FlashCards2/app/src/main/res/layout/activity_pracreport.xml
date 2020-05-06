@@ -67,6 +67,7 @@
         android:layout_height="wrap_content">
 
         <Button
+            android:id="@+id/btn_count"
             android:stateListAnimator="@null"
             android:text="10"
             android:textSize="34sp"

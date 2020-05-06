@@ -53,6 +53,10 @@ public class ColorExercise extends AppCompatActivity implements View.OnClickList
 
     private String mode;  //模式
 
+    private ArrayList<NumberInfo> numberList = new ArrayList<>();  //用来接收题目
+
+    private String[] answerList;  //答案数组
+
     //答题卡按钮
     private Button btn1;
     private Button btn2;
@@ -219,6 +223,8 @@ public class ColorExercise extends AppCompatActivity implements View.OnClickList
         protected void onPostExecute(ArrayList<NumberInfo> numberInfos) {
             tvResult.setText("题目获取完成！");
 
+            numberList = numberInfos;
+
             //获取到题目之后隐藏进度条等信息
             prbRate.setVisibility(prbRate.GONE);
             tvResult.setVisibility(tvResult.GONE);
@@ -254,6 +260,16 @@ public class ColorExercise extends AppCompatActivity implements View.OnClickList
     }
 
 
+    //获取答案列表
+    public void getAnswer() {
+        //获取数组内存
+        answerList = new String[numberList.size()];
+        //比对的时候依据用户的选择来构建循环
+        for (int i = 0; i < numberList.size(); i++) {
+            answerList[i] = numberList.get(i).getAnswer();
+        }
+    }
+
 
 
     //倒计时
@@ -287,9 +303,20 @@ public class ColorExercise extends AppCompatActivity implements View.OnClickList
                         builder.setPositiveButton("是", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+
                                 //跳转到练习报告页面
                                 Intent intent = new Intent(ColorExercise.this, NumberReport.class);
+                                //获取用户的答案，和正确答案，传递过去判断
+                                intent.putExtra("TAG","Color");
+                                // 正确的答案，对象
+                                getAnswer();  //执行获取答案列表
+                                Bundle bundle = new Bundle();
+                                bundle.putStringArray("answerList",answerList);
+                                //用户的选择，数组
+                                bundle.putIntArray("pickList",ColorPracFragment.selectArray);
+                                intent.putExtras(bundle);
                                 startActivity(intent);
+
                             }
                         });
 
@@ -392,7 +419,7 @@ public class ColorExercise extends AppCompatActivity implements View.OnClickList
         int arr[] = ColorPracFragment.selectArray;
         //2,遍历数组
         for (int i = 0; i < arr.length; i++) {
-            if (arr[i] == 1) {
+            if (arr[i] != 0) {
                 //如果被选中，更改题号的颜色
                 buttons.get(i).setBackground(getResources().getDrawable(R.drawable.btn_circle4));
                 buttons.get(i).setTextColor(getResources().getColor(R.color.white));
@@ -424,6 +451,15 @@ public class ColorExercise extends AppCompatActivity implements View.OnClickList
                         if (isall()) {  //如果做完
                             //跳转到练习报告页面
                             Intent intent = new Intent(ColorExercise.this, NumberReport.class);
+                            //获取用户的答案，和正确答案，传递过去判断
+                            intent.putExtra("TAG","Color");
+                            // 正确的答案，对象
+                            getAnswer();  //执行获取答案列表
+                            Bundle bundle = new Bundle();
+                            bundle.putStringArray("answerList",answerList);
+                            //用户的选择，数组
+                            bundle.putIntArray("pickList",ColorPracFragment.selectArray);
+                            intent.putExtras(bundle);
                             startActivity(intent);
                         } else {  //如果未做完
                             //弹出对话框
@@ -442,13 +478,25 @@ public class ColorExercise extends AppCompatActivity implements View.OnClickList
                             builder.setPositiveButton("是", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    //跳转到练习报告页面
-                                    Intent intent = new Intent(ColorExercise.this, NumberReport.class);
-                                    startActivity(intent);
+                                //跳转到练习报告页面
+                                Intent intent = new Intent(ColorExercise.this, NumberReport.class);
+                                //获取用户的答案，和正确答案，传递过去判断
+                                intent.putExtra("TAG","Color");
+                                // 正确的答案，对象
+                                getAnswer();  //执行获取答案列表
+                                Bundle bundle = new Bundle();
+                                bundle.putStringArray("answerList",answerList);
+                                //用户的选择，数组
+                                bundle.putIntArray("pickList",ColorPracFragment.selectArray);
+                                intent.putExtras(bundle);
+                                startActivity(intent);
 
                                 }
                             });
-                            builder.show();
+                            //对话框依附activity，弹出之前判断activity是否在活动状态
+                            if (!isFinishing()) {
+                                builder.show();
+                            }
                         }
                         break;
                     case R.id.sub1:

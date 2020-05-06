@@ -49,6 +49,8 @@ public class DynamicFragment extends Fragment implements View.OnClickListener, T
 
     private TextView text_question;  //询问方式
 
+    public String finalarr[];
+
 
     //选项
     private Button btnA;
@@ -123,7 +125,7 @@ public class DynamicFragment extends Fragment implements View.OnClickListener, T
         list.toArray(arr);
 
         //随机打乱数组顺序，构成选项
-        String finalarr[] = RandomSort.changePosition(arr);
+        finalarr = RandomSort.changePosition(arr);
 
         t_A.setText(finalarr[0]);
         t_B.setText(finalarr[1]);
@@ -152,7 +154,9 @@ public class DynamicFragment extends Fragment implements View.OnClickListener, T
         //获取题号
         order = mView.findViewById(R.id.text_order);
         //设置题号
-        order.setText(position + 1 + "");
+        int temp = position;  //不能改变position的值创建临时变量
+        order.setText(temp + 1 + "");
+
 
         //将控件值设为指定值
         return mView;
@@ -233,10 +237,20 @@ public class DynamicFragment extends Fragment implements View.OnClickListener, T
         int id = v.getId();
         if (id == R.id.horn) {
             play(ttString);
-        } else if (id == R.id.btn_A || id == R.id.btn_B || id == R.id.btn_C || id == R.id.btn_D) {
-            selectArray[position] = 1;  //代表已选择
+        } else if (id == R.id.btn_A) {
             changeOption(v);
+            selectArray[position] = Integer.parseInt(finalarr[0]);  //代表已选择,将答案塞进去
+        } else if (id == R.id.btn_B) {
+            changeOption(v);
+            selectArray[position] = Integer.parseInt(finalarr[1]);  //代表已选择,将答案塞进去
+        } else if (id == R.id.btn_C) {
+            changeOption(v);
+            selectArray[position] = Integer.parseInt(finalarr[2]);
+        } else if (id == R.id.btn_D) {
+            changeOption(v);
+            selectArray[position] = Integer.parseInt(finalarr[3]);
         }
+
     }
 
     //播放语音

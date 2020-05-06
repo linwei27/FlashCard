@@ -45,6 +45,8 @@ public class ColorPracFragment extends Fragment implements View.OnClickListener,
 
     public static int[] selectArray = new int[10];  //选择数组
 
+    public String finalarr[];
+
 
     //选项
     private Button btnA;
@@ -154,7 +156,7 @@ public class ColorPracFragment extends Fragment implements View.OnClickListener,
         list.toArray(arr);
 
         //随机打乱数组顺序，构成选项
-        String finalarr[] = RandomSort.changePosition(arr);
+        finalarr = RandomSort.changePosition(arr);
 
 
         t_A.setBackgroundColor(colorValue[convertColor(finalarr[0])]);
@@ -189,7 +191,8 @@ public class ColorPracFragment extends Fragment implements View.OnClickListener,
         //获取题号
         order = mView.findViewById(R.id.text_order);
         //设置题号
-        order.setText(position + 1 + "");
+        int temp = position;
+        order.setText(temp + 1 + "");
 
         //将控件值设为指定值
         return mView;
@@ -270,9 +273,18 @@ public class ColorPracFragment extends Fragment implements View.OnClickListener,
         int id = v.getId();
         if (id == R.id.horn) {
             play(ttString);
-        } else if (id == R.id.btn_A || id == R.id.btn_B || id == R.id.btn_C || id == R.id.btn_D) {
-            selectArray[position] = 1;  //代表已选择
+        } else if (id == R.id.btn_A) {
             changeOption(v);
+            selectArray[position] = convertColor(finalarr[0]);  //代表已选择,将答案塞进去
+        } else if (id == R.id.btn_B) {
+            changeOption(v);
+            selectArray[position] = convertColor(finalarr[1]);  //代表已选择,将答案塞进去
+        } else if (id == R.id.btn_C) {
+            changeOption(v);
+            selectArray[position] = convertColor(finalarr[2]);
+        } else if (id == R.id.btn_D) {
+            changeOption(v);
+            selectArray[position] = convertColor(finalarr[3]);
         }
     }
 

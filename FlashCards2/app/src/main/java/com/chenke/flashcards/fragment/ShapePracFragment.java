@@ -7,6 +7,7 @@ import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +45,8 @@ public class ShapePracFragment extends Fragment implements View.OnClickListener,
     private TextView order;  //题号
 
     public static int[] selectArray = new int[10];  //选择数组
+
+    public String finalarr[];
 
 
     //选项
@@ -154,7 +157,7 @@ public class ShapePracFragment extends Fragment implements View.OnClickListener,
         list.toArray(arr);
 
         //随机打乱数组顺序，构成选项
-        String finalarr[] = RandomSort.changePosition(arr);
+        finalarr = RandomSort.changePosition(arr);
 
 
         t_A.setImageResource(shapeValue[convertShape(finalarr[0])]);
@@ -189,7 +192,8 @@ public class ShapePracFragment extends Fragment implements View.OnClickListener,
         //获取题号
         order = mView.findViewById(R.id.text_order);
         //设置题号
-        order.setText(position + 1 + "");
+        int temp = position;
+        order.setText(temp + 1 + "");
 
         //将控件值设为指定值
         return mView;
@@ -270,9 +274,18 @@ public class ShapePracFragment extends Fragment implements View.OnClickListener,
         int id = v.getId();
         if (id == R.id.horn) {
             play(ttString);
-        } else if (id == R.id.btn_A || id == R.id.btn_B || id == R.id.btn_C || id == R.id.btn_D) {
-            selectArray[position] = 1;  //代表已选择
+        } else if (id == R.id.btn_A) {
             changeOption(v);
+            selectArray[position] = convertShape(finalarr[0]);  //代表已选择,将答案塞进去
+        } else if (id == R.id.btn_B) {
+            changeOption(v);
+            selectArray[position] = convertShape(finalarr[1]);  //代表已选择,将答案塞进去
+        } else if (id == R.id.btn_C) {
+            changeOption(v);
+            selectArray[position] = convertShape(finalarr[2]);
+        } else if (id == R.id.btn_D) {
+            changeOption(v);
+            selectArray[position] = convertShape(finalarr[3]);
         }
     }
 
