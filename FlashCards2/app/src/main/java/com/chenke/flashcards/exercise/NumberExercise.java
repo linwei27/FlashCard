@@ -103,12 +103,12 @@ public class NumberExercise extends AppCompatActivity implements View.OnClickLis
         mode = intent.getStringExtra("mode");
 
         //请求地址
-        String url = "http://192.168.0.105:8080//number/getNumQuestion?grade=1";
+        String url = "http://192.168.124.24:8080//number/getNumQuestion?grade=1";
 
         if (mode.contains("中等")) {
-            url = "http://192.168.0.105:8080//number/getNumQuestion?grade=2";
+            url = "http://192.168.124.24:8080//number/getNumQuestion?grade=2";
         } else if (mode.contains("困难")) {
-            url = "http://192.168.0.105:8080//number/getNumQuestion?grade=3";
+            url = "http://192.168.124.24:8080//number/getNumQuestion?grade=3";
         }
 
         //调用异步任务获取题目
@@ -429,7 +429,11 @@ public class NumberExercise extends AppCompatActivity implements View.OnClickLis
 
                                 }
                             });
-                            builder.show();
+
+
+                            if (!isFinishing()) {
+                                builder.show();
+                            }
                         }
                         break;
                     case R.id.sub1:

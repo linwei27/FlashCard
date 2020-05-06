@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.chenke.flashcards.R;
 import com.chenke.flashcards.asynctask.RecordTask;
 
+import java.text.DecimalFormat;
 import java.util.Locale;
 
 import okhttp3.Call;
@@ -230,7 +231,7 @@ public class NumberStudy extends AppCompatActivity implements View.OnLongClickLi
 
         //调用异步任务请求服务端
         RecordTask task = new RecordTask(NumberStudy.this);
-        String url = "http://192.168.0.105:8080//user/saveProgress?phone=" + phone + "&rate=" + i + "&type=number&module=1";
+        String url = "http://192.168.124.24:8080//user/saveProgress?phone=" + phone + "&rate=" + i + "&type=number&module=1";
         task.execute(url);
 
     }
@@ -300,7 +301,7 @@ public class NumberStudy extends AppCompatActivity implements View.OnLongClickLi
 
         //调用异步任务请求服务端
         GetRecordTask task = new GetRecordTask();
-        String url = "http://192.168.0.105:8080//user/getProgress?phone=" + phone + "&type=number&module=1";
+        String url = "http://192.168.124.24:8080//user/getProgress?phone=" + phone + "&type=number&module=1";
         task.execute(url);
 
     }

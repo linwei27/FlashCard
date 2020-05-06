@@ -94,12 +94,12 @@ public class ColorExercise extends AppCompatActivity implements View.OnClickList
         mode = intent.getStringExtra("mode");
 
         //请求地址
-        String url = "http://192.168.0.105:8080//color/getColorQuestion?grade=1";
+        String url = "http://192.168.124.24:8080//color/getColorQuestion?grade=1";
 
         if (mode.contains("中等")) {
-            url = "http://192.168.0.105:8080//color/getColorQuestion?grade=2";
+            url = "http://192.168.124.24:8080//color/getColorQuestion?grade=2";
         } else if (mode.contains("困难")) {
-            url = "http://192.168.0.105:8080//color/getColorQuestion?grade=3";
+            url = "http://192.168.124.24:8080//color/getColorQuestion?grade=3";
         }
 
 
@@ -292,7 +292,10 @@ public class ColorExercise extends AppCompatActivity implements View.OnClickList
                                 startActivity(intent);
                             }
                         });
-                        builder.show();
+
+                        if (!isFinishing()) {
+                            builder.show();
+                        }
                     }
                 }
             });

@@ -113,7 +113,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         //调用接口，判断手机号和验证码是否正确匹配
         //调用异步任务
         VerifyCodeTask task = new VerifyCodeTask();
-        String url = "http://192.168.0.105:8080/user/judgeTestCode?verifyCode=" + verify + "&" + "phoneNumber=" + phone;
+        String url = "http://192.168.124.24:8080/user/judgeTestCode?verifyCode=" + verify + "&" + "phoneNumber=" + phone;
         task.execute(url);
 
 
@@ -134,7 +134,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         //调用服务端接口，将手机号传给服务端
         //调用异步任务
         SendCodeTask task = new SendCodeTask();
-        String url = "http://192.168.0.105:8080//user/getTestCode?phoneNumber=" + phone;
+        String url = "http://192.168.124.24:8080//user/getTestCode?phoneNumber=" + phone;
         task.execute(url);
 
     }
