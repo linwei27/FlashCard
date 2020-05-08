@@ -100,12 +100,15 @@ public class ShapeExercise extends AppCompatActivity implements View.OnClickList
         mode = intent.getStringExtra("mode");
 
         //请求地址
-        String url = "http://192.168.124.24:8080//pattern/getPatQuestion?grade=1";
+//        String url = "http://192.168.124.24:8080//pattern/getPatQuestion?grade=1";
+        String url = "http://192.168.0.105:8080//pattern/getPatQuestion?grade=1";
 
         if (mode.contains("中等")) {
-            url = "http://192.168.124.24:8080//pattern/getPatQuestion?grade=2";
+//            url = "http://192.168.124.24:8080//pattern/getPatQuestion?grade=2";
+            url = "http://192.168.0.105:8080//pattern/getPatQuestion?grade=2";
         } else if (mode.contains("困难")) {
-            url = "http://192.168.124.24:8080//pattern/getPatQuestion?grade=2";
+//            url = "http://192.168.124.24:8080//pattern/getPatQuestion?grade=2";
+            url = "http://192.168.0.105:8080//pattern/getPatQuestion?grade=2";
         }
 
 
@@ -367,8 +370,8 @@ public class ShapeExercise extends AppCompatActivity implements View.OnClickList
 
     //检查数组是否包含0（是否已答完）
     public boolean isall() {
-        for (int i = 0; i < DynamicFragment.selectArray.length; i++) {
-            if (DynamicFragment.selectArray[i] == 0) {
+        for (int i = 0; i < ShapePracFragment.selectArray.length; i++) {
+            if (ShapePracFragment.selectArray[i] == 0) {
                 return false;
             }
         }

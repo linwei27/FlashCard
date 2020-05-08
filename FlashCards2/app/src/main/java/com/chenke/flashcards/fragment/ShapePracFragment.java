@@ -44,7 +44,7 @@ public class ShapePracFragment extends Fragment implements View.OnClickListener,
 
     private TextView order;  //题号
 
-    public static int[] selectArray = new int[10];  //选择数组
+    public static final int[] selectArray = new int[10];  //选择数组
 
     public String finalarr[];
 
@@ -269,6 +269,14 @@ public class ShapePracFragment extends Fragment implements View.OnClickListener,
     }
 
 
+    //处理为0的情况
+    public int manager(int a) {
+        if (a == 0) {
+            return 111;
+        }
+        return a;
+    }
+
     @Override
     public void onClick(View v) {
         int id = v.getId();
@@ -276,16 +284,16 @@ public class ShapePracFragment extends Fragment implements View.OnClickListener,
             play(ttString);
         } else if (id == R.id.btn_A) {
             changeOption(v);
-            selectArray[position] = convertShape(finalarr[0]);  //代表已选择,将答案塞进去
+            selectArray[position] = manager(convertShape(finalarr[0]));
         } else if (id == R.id.btn_B) {
             changeOption(v);
-            selectArray[position] = convertShape(finalarr[1]);  //代表已选择,将答案塞进去
+            selectArray[position] = manager(convertShape(finalarr[1]));  //代表已选择,将答案塞进去
         } else if (id == R.id.btn_C) {
             changeOption(v);
-            selectArray[position] = convertShape(finalarr[2]);
+            selectArray[position] = manager(convertShape(finalarr[2]));
         } else if (id == R.id.btn_D) {
             changeOption(v);
-            selectArray[position] = convertShape(finalarr[3]);
+            selectArray[position] = manager(convertShape(finalarr[3]));
         }
     }
 

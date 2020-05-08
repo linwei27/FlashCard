@@ -240,7 +240,8 @@ public class ShapeStudy extends AppCompatActivity implements View.OnClickListene
 
         //调用异步任务请求服务端
         RecordTask task = new RecordTask(ShapeStudy.this);
-        String url = "http://192.168.124.24:8080//user/saveProgress?phone=" + phone + "&rate=" + i + "&type=pattern&module=1";
+//        String url = "http://192.168.124.24:8080//user/saveProgress?phone=" + phone + "&rate=" + i + "&type=pattern&module=1";
+        String url = "http://192.168.0.105:8080//user/saveProgress?phone=" + phone + "&rate=" + i + "&type=pattern&module=1";
         task.execute(url);
 
     }
@@ -317,7 +318,8 @@ public class ShapeStudy extends AppCompatActivity implements View.OnClickListene
 
         //调用异步任务请求服务端
         GetRecordTask task = new GetRecordTask();
-        String url = "http://192.168.124.24:8080//user/getProgress?phone=" + phone + "&type=pattern&module=1";
+//        String url = "http://192.168.124.24:8080//user/getProgress?phone=" + phone + "&type=pattern&module=1";
+        String url = "http://192.168.0.105:8080//user/getProgress?phone=" + phone + "&type=pattern&module=1";
         task.execute(url);
 
     }

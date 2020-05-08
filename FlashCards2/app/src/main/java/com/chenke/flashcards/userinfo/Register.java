@@ -104,7 +104,8 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
         //调用异步任务
         VerifyCodeTask task = new VerifyCodeTask();
-        String url = "http://192.168.124.24:8080/user/judgeTestCode?verifyCode=" + verify + "&" + "phoneNumber=" + phone;
+//        String url = "http://192.168.124.24:8080/user/judgeTestCode?verifyCode=" + verify + "&" + "phoneNumber=" + phone;
+        String url = "http://192.168.0.105:8080/user/judgeTestCode?verifyCode=" + verify + "&" + "phoneNumber=" + phone;
         task.execute(url);
 
     }
@@ -121,7 +122,8 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
         //调用异步任务
         SendCodeTask task = new SendCodeTask();
-        String url = "http://192.168.124.24:8080//user/getTestCode?phoneNumber=" + phone;
+//        String url = "http://192.168.124.24:8080//user/getTestCode?phoneNumber=" + phone;
+        String url = "http://192.168.0.105:8080//user/getTestCode?phoneNumber=" + phone;
         task.execute(url);
 
     }

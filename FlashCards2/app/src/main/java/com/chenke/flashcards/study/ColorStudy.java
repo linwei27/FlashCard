@@ -241,7 +241,8 @@ public class ColorStudy extends AppCompatActivity implements View.OnClickListene
 
         //调用异步任务请求服务端
         RecordTask task = new RecordTask(ColorStudy.this);
-        String url = "http://192.168.124.24:8080//user/saveProgress?phone=" + phone + "&rate=" + i + "&type=color&module=1";
+//        String url = "http://192.168.124.24:8080//user/saveProgress?phone=" + phone + "&rate=" + i + "&type=color&module=1";
+        String url = "http://192.168.0.105:8080//user/saveProgress?phone=" + phone + "&rate=" + i + "&type=color&module=1";
         task.execute(url);
 
 
@@ -311,7 +312,8 @@ public class ColorStudy extends AppCompatActivity implements View.OnClickListene
 
         //调用异步任务请求服务端
         GetRecordTask task = new GetRecordTask();
-        String url = "http://192.168.124.24:8080//user/getProgress?phone=" + phone + "&type=color&module=1";
+//        String url = "http://192.168.124.24:8080//user/getProgress?phone=" + phone + "&type=color&module=1";
+        String url = "http://192.168.0.105:8080//user/getProgress?phone=" + phone + "&type=color&module=1";
         task.execute(url);
 
     }

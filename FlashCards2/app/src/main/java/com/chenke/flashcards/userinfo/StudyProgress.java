@@ -77,17 +77,20 @@ public class StudyProgress extends AppCompatActivity {
 
         //调用后台接口，获取具体比例
         GetNumberTask task1 = new GetNumberTask();
-        task1.execute("http://192.168.124.24:8080//user/getProgress?phone=" + phone + "&type=number&module=1");
+//        task1.execute("http://192.168.124.24:8080//user/getProgress?phone=" + phone + "&type=number&module=1");
+        task1.execute("http://192.168.0.105:8080//user/getProgress?phone=" + phone + "&type=number&module=1");
 
 
 
         GetPatternTask task2 = new GetPatternTask();
-        task2.execute("http://192.168.124.24:8080//user/getProgress?phone=" + phone + "&type=pattern&module=1");
+//        task2.execute("http://192.168.124.24:8080//user/getProgress?phone=" + phone + "&type=pattern&module=1");
+        task2.execute("http://192.168.0.105:8080//user/getProgress?phone=" + phone + "&type=pattern&module=1");
 
 
 
         GetColorTask task3 = new GetColorTask();
-        task3.execute("http://192.168.124.24:8080//user/getProgress?phone=" + phone + "&type=color&module=1");
+//        task3.execute("http://192.168.124.24:8080//user/getProgress?phone=" + phone + "&type=color&module=1");
+        task3.execute("http://192.168.0.105:8080//user/getProgress?phone=" + phone + "&type=color&module=1");
 
 
 

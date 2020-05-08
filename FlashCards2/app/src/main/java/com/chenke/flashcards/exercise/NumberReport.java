@@ -24,6 +24,8 @@ public class NumberReport extends AppCompatActivity implements View.OnClickListe
 
     private int count = 0;  //答对数量
 
+    private String a[] = new String[10];  //截取多余的数组
+
     private String shapeName[] = {
             "圆形","三角形","长方形","正方形","心形","五角星",
             "球体","圆柱体","圆锥体"
@@ -57,9 +59,20 @@ public class NumberReport extends AppCompatActivity implements View.OnClickListe
         //获取数据包
         bundle = intent.getExtras();
         //获取答案数组
-        String a[] = bundle.getStringArray("answerList");
+        String temp[] = bundle.getStringArray("answerList");
         //获取用户的答案
         int b[] = bundle.getIntArray("pickList");
+
+
+        //截取15道题那种
+        if (temp.length > 10) {
+            for (int i = 0; i < 10; i++) {
+                a[i] = temp[i];
+            }
+        } else {
+            a = temp;
+        }
+
 
         if (TAG.equals("Number")) {  //判断数字练习
 
@@ -73,20 +86,31 @@ public class NumberReport extends AppCompatActivity implements View.OnClickListe
             btn_count.setText(count + "");
 
         } else if (TAG.equals("Shape")) {  //判断形状
-            for (int i = 0; i < b.length; i++) {
-
-                if (a[i].equals(shapeName[b[i]])){
-                    count++;
+            for (int i = 0; i < a.length; i++) {
+                if (b[i] == 111) {  //说明用户选的是第一个
+                    if (a[i].equals(shapeName[0])) {  //如果答案是第一个图形
+                        count++;
+                    }
+                } else {  //用户选的其它
+                    if (a[i].equals(shapeName[b[i]])) {
+                        count++;
+                    }
                 }
 
             }
 
 
         } else if (TAG.equals("Color")) {  //判断颜色练习
-            for (int i = 0; i < b.length; i++) {
+            for (int i = 0; i < a.length; i++) {
 
-                if (a[i].equals(colorName[b[i]])) {
-                    count++;
+                if (b[i] == 111) {  //判断是不是第一个
+                    if (a[i].equals(colorName[0])) {  //如果答案是第一个图形
+                        count++;
+                    }
+                } else {
+                    if (a[i].equals(colorName[b[i]])) {
+                        count++;
+                    }
                 }
             }
         }
